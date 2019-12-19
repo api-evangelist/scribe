@@ -1,0 +1,276 @@
+{
+    "id": "77e0d162ea93ee172d894f4515961035",
+    "name": "Scribe Swagger API",
+    "description": null,
+    "auth": null,
+    "events": null,
+    "variables": [],
+    "order": [],
+    "folders_order": [],
+    "folders": [],
+    "requests": [
+        {
+            "id": "e1d638e8eeb883e25d562e42029f91fd",
+            "name": "Agents_GetAgents",
+            "url": "http:\/\/api.scribesoft.com\/\/v1\/orgs\/{orgId}\/agents",
+            "description": "Return a list of Agents",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "orgId",
+                    "description": "ID of the Organization.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "connectorId",
+                    "description": "ID of a Connector installed in an Agent.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "name",
+                    "description": "Name of an Agent.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "offset",
+                    "description": "The number of Agents to skip before returning results. Default value is 0.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "limit",
+                    "description": "Maximum number of Agents. Default value is 100.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "77e0d162ea93ee172d894f4515961035",
+            "rawModeData": ""
+        },
+        {
+            "id": "040a6ff7c04f18fee3a8b92adefa849c",
+            "name": "Agents_CaptureAgentLogs",
+            "url": "http:\/\/api.scribesoft.com\/\/v1\/orgs\/{orgId}\/agents\/{agentId}\/logs",
+            "description": "Capture Agent Logs",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "orgId",
+                    "description": "ID of the Organization.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "agentId",
+                    "description": "ID of the Agent.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "77e0d162ea93ee172d894f4515961035",
+            "rawModeData": ""
+        },
+        {
+            "id": "7b48e026b2ec0e237141fe9cf281a3e4",
+            "name": "Agents_GetAgentLogs",
+            "url": "http:\/\/api.scribesoft.com\/\/v1\/orgs\/{orgId}\/agents\/{agentId}\/logs\/{logId}",
+            "description": "Return Agent Logs",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "orgId",
+                    "description": "ID of the Organization.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "agentId",
+                    "description": "ID of the Agent.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "logId",
+                    "description": "ID of the log request.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "77e0d162ea93ee172d894f4515961035",
+            "rawModeData": ""
+        },
+        {
+            "id": "abc449520580bad1ebbf81397a381eb9",
+            "name": "Agents_RestartAgent",
+            "url": "http:\/\/api.scribesoft.com\/\/v1\/orgs\/{orgId}\/agents\/{agentId}\/restart",
+            "description": "Restart an Agent",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "orgId",
+                    "description": "ID of the Organization.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "agentId",
+                    "description": "ID of the Agent.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "restartNow",
+                    "description": "Set to true to restart now, interrupting running Solutions or false to wait until Solutions finish. Default is false.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "77e0d162ea93ee172d894f4515961035",
+            "rawModeData": ""
+        },
+        {
+            "id": "656a18fd8e7b1e25e3c14c21ab9a892b",
+            "name": "Agents_GetAgent",
+            "url": "http:\/\/api.scribesoft.com\/\/v1\/orgs\/{orgId}\/agents\/{id}",
+            "description": "Return information about an Agent",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "orgId",
+                    "description": "ID of the Organization.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "id",
+                    "description": "ID of the Agent.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "77e0d162ea93ee172d894f4515961035",
+            "rawModeData": ""
+        },
+        {
+            "id": "f831c22dd6911e570ce695f2310f16e7",
+            "name": "Agents_UpdateAgent",
+            "url": "http:\/\/api.scribesoft.com\/\/v1\/orgs\/{orgId}\/agents\/{id}",
+            "description": "Modify an Agent",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "orgId",
+                    "description": "ID of the Organization.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "id",
+                    "description": "ID of the Agent.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "77e0d162ea93ee172d894f4515961035",
+            "rawModeData": ""
+        }
+    ]
+}
