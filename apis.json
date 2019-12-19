@@ -1,0 +1,77 @@
+{
+    "name": "Scribe",
+    "description": "<p>Scribe Software Corporation provides cost-effective, no-coding solutions that can be used as the only tool businesses need to integrate virtually any application, data source or Software as a Service (SaaS) platform.<\/p>",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/logos\/scribe-soft-logo.jpg",
+    "tags": [
+        "data",
+        "have api",
+        "have swagger",
+        "ipaas",
+        "new"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/scribe\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Scribe",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/logos\/scribe-soft-logo.jpg",
+            "humanURL": "http:\/\/www.scribesoft.com\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/scribe.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/scribe-openapi.json"
+                }
+            ]
+        },
+        {
+            "name": "Scribe Swagger API",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/logos\/scribe-soft-logo.jpg",
+            "humanURL": "http:\/\/www.scribesoft.com\/",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/scribe-swagger-api.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/scribe-swagger-api-openapi.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/blog.scribesoft.com\/feed\/"
+        },
+        {
+            "type": "Developers",
+            "url": "https:\/\/dev.scribesoft.com\/"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/19916-2019-09-04-00-06-07.json"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/scribesoft"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/www.scribesoft.com\/"
+        }
+    ]
+}
