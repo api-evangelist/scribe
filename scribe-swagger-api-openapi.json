@@ -1,0 +1,3115 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "2",
+        "title": "Scribe Swagger API",
+        "description": "",
+        "termsOfService": "http:\/\/exmple.com\/license\/"
+    },
+    "servers": [
+        "http:\/\/api.scribesoft.com\/"
+    ],
+    "paths": {
+        "\/v1\/orgs\/{orgId}\/agents": {
+            "get": {
+                "summary": "Agents_GetAgents",
+                "description": "Return a list of Agents",
+                "operationId": "V1OrgsAgentsByOrgIdGet",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "orgId",
+                        "in": "path",
+                        "description": "ID of the Organization."
+                    },
+                    {
+                        "name": "connectorId",
+                        "in": "query",
+                        "description": "ID of a Connector installed in an Agent."
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name of an Agent."
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "The number of Agents to skip before returning results. Default value is 0."
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Maximum number of Agents. Default value is 100."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/IHttpActionResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/v1\/orgs\/{orgId}\/agents\/{agentId}\/logs": {
+            "post": {
+                "summary": "Agents_CaptureAgentLogs",
+                "description": "Capture Agent Logs",
+                "operationId": "V1OrgsAgentsLogsByOrgIdAndAgentIdPost",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "orgId",
+                        "in": "path",
+                        "description": "ID of the Organization."
+                    },
+                    {
+                        "name": "agentId",
+                        "in": "path",
+                        "description": "ID of the Agent."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/IHttpActionResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/v1\/orgs\/{orgId}\/agents\/{agentId}\/logs\/{logId}": {
+            "get": {
+                "summary": "Agents_GetAgentLogs",
+                "description": "Return Agent Logs",
+                "operationId": "V1OrgsAgentsLogsLogIdByOrgIdAndAgentIdGet",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "orgId",
+                        "in": "path",
+                        "description": "ID of the Organization."
+                    },
+                    {
+                        "name": "agentId",
+                        "in": "path",
+                        "description": "ID of the Agent."
+                    },
+                    {
+                        "name": "logId",
+                        "in": "path",
+                        "description": "ID of the log request."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/IHttpActionResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/v1\/orgs\/{orgId}\/agents\/{agentId}\/restart": {
+            "post": {
+                "summary": "Agents_RestartAgent",
+                "description": "Restart an Agent",
+                "operationId": "V1OrgsAgentsRestartByOrgIdAndAgentIdPost",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "orgId",
+                        "in": "path",
+                        "description": "ID of the Organization."
+                    },
+                    {
+                        "name": "agentId",
+                        "in": "path",
+                        "description": "ID of the Agent."
+                    },
+                    {
+                        "name": "restartNow",
+                        "in": "query",
+                        "description": "Set to true to restart now, interrupting running Solutions or false to wait until Solutions finish. Default is false."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/IHttpActionResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/v1\/orgs\/{orgId}\/agents\/{id}": {
+            "get": {
+                "summary": "Agents_GetAgent",
+                "description": "Return information about an Agent",
+                "operationId": "V1OrgsAgentsByOrgIdAndIdGet",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "orgId",
+                        "in": "path",
+                        "description": "ID of the Organization."
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the Agent."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/IHttpActionResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Agents_UpdateAgent",
+                "description": "Modify an Agent",
+                "operationId": "V1OrgsAgentsByOrgIdAndIdPut",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "orgId",
+                        "in": "path",
+                        "description": "ID of the Organization."
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the Agent."
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "FailedRecord": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "sourceData": {
+                        "description": "Reference",
+                        "type": "object"
+                    }
+                }
+            },
+            "sourceData": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "properties": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "children": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "properties": {
+                "type": "array"
+            },
+            "DataProperties": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "value": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "IHttpActionResult": {
+                "type": "object"
+            },
+            "AgentModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Status": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "MachineName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Version": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ServiceName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastStartTime": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastShutdownTime": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastContactTime": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "IsCloudAgent": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "IsUpdating": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "UsedInSolutions": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "UpdateStateDateTime": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "InstalledConnectors": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "Status": {
+                "type": "object"
+            },
+            "InstalledConnectors": {
+                "type": "array"
+            },
+            "AgentConnectorModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Version": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "ProvisionOnPremiseAgentModel": {
+                "type": "object",
+                "properties": {
+                    "AgentInstallationKey": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "AgentInstallerLocation": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "ConnectionModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Alias": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Color": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ConnectorId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "ConnectorType": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "CreateDateTime": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastModificationDateTime": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "UsedInSolutions": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "properties": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "Keyvaluepair[string,string]": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "value": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "ExtendedCommandModel": {
+                "type": "object",
+                "properties": {
+                    "ReplyData": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Reply": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Status": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "ReplyData": {
+                "type": "array"
+            },
+            "CommandModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Reply": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Status": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "EntityModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "CreationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastModificationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ModificationBy": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "FullName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "OriginalName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "IsHidden": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "Actions": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "Actions": {
+                "type": "array"
+            },
+            "ActionModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "FullName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "KnownAction": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "SupportsLookupConditions": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "SupportsInput": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "SupportsBulk": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "SupportsMultipleRecordOperations": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "SupportsSequences": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "SupportsConstraints": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "SupportsRelations": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "CreationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastModificationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ModificationBy": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "KnownAction": {
+                "type": "object"
+            },
+            "PropertyModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "FullName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "OriginalName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "PropertyType": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "MinOccurs": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "MaxOccurs": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "Size": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "PresentationType": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Nullable": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "IsPrimaryKey": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "UsedInQuerySelect": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "UsedInQueryConstraint": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "UsedInActionInput": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "UsedInActionOutput": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "UsedInLookupCondition": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "UsedInQuerySequence": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "RequiredInActionInput": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "Ordinal": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "CreationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastModificationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ModificationBy": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "IsComplexType": {
+                        "description": "",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "RelationshipModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "FullName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "OriginalName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ThisEntityFullName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "RelatedEntityFullName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ThisProperties": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "RelatedProperties": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "RelationType": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "CreationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastModificationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ModificationBy": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ParentId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "UniqueId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "Path": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "OperationModel": {
+                "type": "object",
+                "properties": {
+                    "OperationName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Action": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "BlockType": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "Action": {
+                "type": "object"
+            },
+            "BlockType": {
+                "type": "object"
+            },
+            "ConnectorModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "VendorName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "IsCloudSupported": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "UiName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "UiVersion": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "SolutionRoles": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "SolutionRoles": {
+                "type": "array"
+            },
+            "ConnectorSolutionRoleModel": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "ConnectorUIModel": {
+                "type": "object",
+                "properties": {
+                    "CompanyName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "HelpURI": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Version": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "UIDecorations": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "UIDecorations": {
+                "type": "array"
+            },
+            "UIItem": {
+                "type": "object",
+                "properties": {
+                    "InputType": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "IsRequired": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "Label": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Options": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "Order": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "PropertyName": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "InputType": {
+                "type": "object"
+            },
+            "Options": {
+                "type": "array"
+            },
+            "KeyValueModel": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "value": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "ConnectorUpdatesModel": {
+                "type": "object",
+                "properties": {
+                    "Version": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ConnectorId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "CreationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastModificationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ModificationBy": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Islocked": {
+                        "description": "",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "ConnectorCustomerModel": {
+                "type": "object",
+                "properties": {
+                    "OrgId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "OrgName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ProvisionedBy": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ProvsionedDate": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "ExecutionHistoryErrorModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "FailedRecordId": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "MapName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "SourceEntity": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ErrorMessage": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ErrorDetail": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "AdditionalErrorDetails": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "CanReprocess": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "Marked": {
+                        "description": "",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "ExecutionHistoryModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Start": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Stop": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "RecordsProcessed": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "RecordsFailed": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "Result": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "Details": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ReprocessRecordsRemaining": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "IsReprocessJob": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "Duration": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "SourceDataLocal": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "ProcessExecutionId": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "Result": {
+                "type": "object"
+            },
+            "ExecutionHistoryStatisticsModel": {
+                "type": "object",
+                "properties": {
+                    "LegacyCounters": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "MapStatistics": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "LegacyCounterList": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "LegacyCounters": {
+                "type": "array"
+            },
+            "MapStatistics": {
+                "type": "array"
+            },
+            "LegacyCounterList": {
+                "type": "array"
+            },
+            "Keyvaluepair[guid,dictionary[string,counter]]": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Value": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "Value": {
+                "type": "object"
+            },
+            "ExecutionHistoryMapRowCountsModel": {
+                "type": "object",
+                "properties": {
+                    "AverageTime": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "EntityName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Errors": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "MapId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "MapName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "MaxTimeInMs": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "MinTimeInMs": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "Rows": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "TotalTime": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "TotalTimeDisplay": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "Counter": {
+                "type": "object",
+                "properties": {
+                    "CallCount": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "ErrorCount": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "TotalTimeInMs": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "MaxTimeInMs": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "MinTimeInMs": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "ActionType": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "ActionType": {
+                "type": "object"
+            },
+            "Keyvaluepair[string,counter]": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Counter": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "Value": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "InvitedUserModel": {
+                "type": "object",
+                "properties": {
+                    "Email": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "RoleType": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "InvitedDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "StatusType": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "Message": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "RoleType": {
+                "type": "object"
+            },
+            "StatusType": {
+                "type": "object"
+            },
+            "LookupTableModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "CreationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastModificationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ModificationBy": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LookupTableValues": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "LookupTableValues": {
+                "type": "array"
+            },
+            "LookupTableValueModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Value1": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Value2": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "CreationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastModificationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ModificationBy": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "ManagedConnectorModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "VendorName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Version": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "IsCloudSupported": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "IsFree": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "IsInMarketPlace": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "Customers": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "Customers": {
+                "type": "array"
+            },
+            "MapModelBase": {
+                "type": "object",
+                "properties": {
+                    "Description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Valid": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "Id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "LastModificationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastRunDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "MapType": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "NetChange": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "NetChangeFieldName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ProcessDefinitionDbId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "SourceConnectionId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "SourceConnectionName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "SourceConnectionAlias": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "SourceConnectionType": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Version": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "MapType": {
+                "type": "object"
+            },
+            "MapRevisionModel": {
+                "type": "object",
+                "properties": {
+                    "Id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "Revision": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "Comment": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "RevisionDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "CreatedBy": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "MapEventInfo": {
+                "type": "object",
+                "properties": {
+                    "Url": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "State": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "EntityName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "EndpointId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "CreationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastModificationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ColumnMappings": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "ColumnMappings": {
+                "type": "array"
+            },
+            "DataColumn": {
+                "type": "object",
+                "properties": {
+                    "DataType": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "DataTypeIndex": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "SampleValue": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "SelectedDataType": {
+                        "description": "",
+                        "type": "integer"
+                    }
+                }
+            },
+            "DataType": {
+                "type": "object"
+            },
+            "MapLinkModel": {
+                "type": "object",
+                "properties": {
+                    "Enabled": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "Valid": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "Id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "Index": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "MapType": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "Sources": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Targets": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LockedBy": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LockDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "EventUrl": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastModified": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ModifiedBy": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Description": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "ExecutionCommandModel": {
+                "type": "object",
+                "properties": {
+                    "ExecutionId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Reply": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Status": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "MapModelAdv": {
+                "type": "object",
+                "properties": {
+                    "StartingBlockId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "TargetConnections": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "Blocks": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "Revision": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "RevisionDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "RevisionComment": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Valid": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "Id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "LastModificationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastRunDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "MapType": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "NetChange": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "NetChangeFieldName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ProcessDefinitionDbId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "SourceConnectionId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "SourceConnectionName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "SourceConnectionAlias": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "SourceConnectionType": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Version": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "TargetConnections": {
+                "type": "array"
+            },
+            "Blocks": {
+                "type": "array"
+            },
+            "ConnectionInfo": {
+                "type": "object",
+                "properties": {
+                    "ConnectionAlias": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ConnectionId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "ConnectionName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ConnectionType": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "SysDefinitionBase": {
+                "type": "object",
+                "properties": {
+                    "Description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Enabled": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "IsDeleted": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "LastModificationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastRunDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LockedBy": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "MapType": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "MapTypeString": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "NetChange": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "NetChangeFieldName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ProcessDefinitionDbId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "RelNameInformationLookup": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "SourceConnectionAlias": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "SourceConnectionId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "SourceConnectionName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "SourceConnectionType": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "SourceEntity": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "SourcePrimaryKeyPropertyFullNames": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "TargetConnectionId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "TargetConnectionInfo": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "TargetConnectionName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "TargetConnectionNames": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "TargetConnectionType": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Valid": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "Version": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "RelNameInformationLookup": {
+                "type": "array"
+            },
+            "SourcePrimaryKeyPropertyFullNames": {
+                "type": "array"
+            },
+            "TargetConnectionInfo": {
+                "type": "array"
+            },
+            "TargetConnectionNames": {
+                "type": "array"
+            },
+            "Keyvaluepair[string,reldefinfo]": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Value": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "Keyvaluepair[guid,connectioninfo]": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ConnectionInfo": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "Value": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "RelDefInfo": {
+                "type": "object",
+                "properties": {
+                    "ChildPropertyName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "EntityName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "IsRequired": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "ParentPropertyName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "RelationshipAlais": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "RelationshipType": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ParentId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "Path": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "RelationshipType": {
+                "type": "object"
+            },
+            "MapIssueModel": {
+                "type": "object",
+                "properties": {
+                    "TargetFieldName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Severity": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "BlockId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "Description": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "Severity": {
+                "type": "object"
+            },
+            "ValidationFormulaModel": {
+                "type": "object",
+                "properties": {
+                    "BlockId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "TargetFieldDataType": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Formula": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Path": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "FormulaIssueModel": {
+                "type": "object",
+                "properties": {
+                    "Severity": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "BlockId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "Description": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "ValidationResult": {
+                "type": "object"
+            },
+            "NativeQueryTestModel": {
+                "type": "object",
+                "properties": {
+                    "ConnectionId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "BlockId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "Text": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "NativeQueryResultModel": {
+                "type": "object",
+                "properties": {
+                    "Error": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Fields": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "Fields": {
+                "type": "array"
+            },
+            "MarketplaceConnectorDetail": {
+                "type": "object",
+                "properties": {
+                    "AdapterTypeId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "AgentInstallStatuses": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "CertificationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ContactUrl": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Installed": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "IsAssociated": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "IsFree": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "IsISSource": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "IsISTarget": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "IsMSSource": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "IsMSTarget": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "IsPublic": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "IsRSSource": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "IsRSTarget": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "Link": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Logo": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "LogoUrl": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ProviderName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "RequiresJava": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "SupportsCloudAgents": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "ConnectorUpdateVersions": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "AgentInstallStatuses": {
+                "type": "array"
+            },
+            "Logo": {
+                "type": "array"
+            },
+            "ConnectorUpdateVersions": {
+                "type": "array"
+            },
+            "MarketplaceAgentInstallStatus": {
+                "type": "object",
+                "properties": {
+                    "AgentId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "AgentName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Status": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "ConnectorUpdateVersionModel": {
+                "type": "object",
+                "properties": {
+                    "LastModificationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Version": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "IsHotFix": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "Islocked": {
+                        "description": "",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "OrgUserModel": {
+                "type": "object",
+                "properties": {
+                    "Role": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "Email": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "FirstName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "PendingInvitation": {
+                        "description": "",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Role": {
+                "type": "object"
+            },
+            "OrganizationModel": {
+                "type": "object",
+                "properties": {
+                    "Id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "administrators": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "parentId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "tenantType": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "website": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "street": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "city": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "state": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "postalCode": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "country": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "primaryContactFirstName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "primaryContactLastName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "primaryContactEmail": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "primaryContactPhoneNumber": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "primaryContactStreet": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "primaryContactCity": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "primaryContactState": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "primaryContactPostalCode": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "primaryContactCountry": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "isSourceDataLocal": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "apiToken": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "isAgentLogDownloadAllowed": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "tenantRole": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "Status": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "solutionStatusErrors": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "dataCenterId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "dataCenterName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "dataCenterLocation": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "securityRules": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "administrators": {
+                "type": "array"
+            },
+            "tenantRole": {
+                "type": "object"
+            },
+            "solutionStatusErrors": {
+                "type": "array"
+            },
+            "securityRules": {
+                "type": "array"
+            },
+            "OrganizationSecurityRuleModel": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "AllowedIpRangeStartAddress": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "AllowedIpRangeEndAddress": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ApiAccessEnabled": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "EventSolutionAccessEnabled": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "FunctionModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "CategoryName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Prototype": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastModificationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "DescriptionUrl": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "SettingModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ValueType": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "StringValue": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "DecimalValue": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "BlobValue": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "BlobValue": {
+                "type": "array"
+            },
+            "GetSecuritySettingModel": {
+                "type": "object",
+                "properties": {
+                    "APICryptoToken": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "EventSolutionAccessToken": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "isSourceDataLocal": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "isAgentLogDownloadAllowed": {
+                        "description": "",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "SetSecuritySettingModel": {
+                "type": "object",
+                "properties": {
+                    "isSourceDataLocal": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "isAgentLogDownloadAllowed": {
+                        "description": "",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "MessageEndpointModel": {
+                "type": "object",
+                "properties": {
+                    "Id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "Url": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "solutionName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "MapName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "mapDescription": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "state": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "EntityName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "messageCount": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "CreateDateTime": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastModificationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "solutionId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "processDefinitionId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    }
+                }
+            },
+            "state": {
+                "type": "object"
+            },
+            "RegisterModel": {
+                "type": "object",
+                "properties": {
+                    "OrgName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "UserId": {
+                        "description": "The user Id",
+                        "type": "string"
+                    },
+                    "Connectors": {
+                        "description": "list of connector ids to install",
+                        "type": "array"
+                    },
+                    "OrgId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "SubscriptionSkus": {
+                        "description": "list of subscriptions to assign",
+                        "type": "array"
+                    },
+                    "securityRules": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "dataCenterId": {
+                        "description": "",
+                        "type": "integer"
+                    }
+                }
+            },
+            "Connectors": {
+                "type": "array"
+            },
+            "SubscriptionSkus": {
+                "type": "array"
+            },
+            "SubscriptionSku": {
+                "type": "object",
+                "properties": {
+                    "Sku": {
+                        "description": "The SKU of a subscription",
+                        "type": "string"
+                    },
+                    "StartDate": {
+                        "description": "The start date of a subscription.",
+                        "type": "string"
+                    },
+                    "ExpirationDate": {
+                        "description": "The experation date of a subscription.",
+                        "type": "string"
+                    }
+                }
+            },
+            "SecurityRule": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ApiAccessEnabled": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "EventSolutionAccessEnabled": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "AllowedIpRangeStartAddress": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "AllowedIpRangeEndAddress": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "SolutionModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "AgentId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "Description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ConnectionIdForSource": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "ConnectionIdForTarget": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "SolutionType": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "Status": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "InProgressStartTime": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastRunTime": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "NextRunTime": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "MapLinks": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "IsDisabled": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "ReasonDisabled": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "MinAgentVersion": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ModificationBy": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ReplicationSettings": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "SolutionType": {
+                "type": "object"
+            },
+            "MapLinks": {
+                "type": "array"
+            },
+            "ReplicationSettings": {
+                "type": "object"
+            },
+            "RSEntitySelection": {
+                "type": "object",
+                "properties": {
+                    "SelectionType": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "Entities": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "SelectionType": {
+                "type": "object"
+            },
+            "Entities": {
+                "type": "array"
+            },
+            "SolutionConnectionModel": {
+                "type": "object",
+                "properties": {
+                    "ConnectionName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ConnectionId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "ConnectorName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "ConnectorId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "ConnectorLogoUrl": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "SolutionScheduleModel": {
+                "type": "object",
+                "properties": {
+                    "ScheduleOption": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "solutionId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "RunOnceOptions": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "RecurringOptions": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "ScheduleOption": {
+                "type": "object"
+            },
+            "RunOnceOptions": {
+                "type": "object"
+            },
+            "RecurringOptions": {
+                "type": "object"
+            },
+            "RunOnceModel": {
+                "type": "object",
+                "properties": {
+                    "DateTime": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "RecurringModel": {
+                "type": "object",
+                "properties": {
+                    "Days": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "Times": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "TimeZone": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "Days": {
+                "type": "object"
+            },
+            "Times": {
+                "type": "object"
+            },
+            "RecurringDaysModel": {
+                "type": "object",
+                "properties": {
+                    "DaysOption": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "DaysIntervalStartDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "DaysInterval": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "DaysOfMonth": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "DaysOfWeek": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "LastDayOfMonth": {
+                        "description": "",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "DaysOption": {
+                "type": "object"
+            },
+            "DaysOfMonth": {
+                "type": "array"
+            },
+            "DaysOfWeek": {
+                "type": "array"
+            },
+            "RecurringTimesModel": {
+                "type": "object",
+                "properties": {
+                    "TimeOption": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "HourlyMinutes": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "TimeOfDay": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "TimeInterval": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "TimeIntervalUnit": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "TimeOption": {
+                "type": "object"
+            },
+            "TimeIntervalUnit": {
+                "type": "object"
+            },
+            "SolutionPrepareModel": {
+                "type": "object",
+                "properties": {
+                    "CreationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "HasError": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "IsComplete": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "Message": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "solutionId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "MapId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "mapErrorModels": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "mapErrorModels": {
+                "type": "array"
+            },
+            "MapErrorModel": {
+                "type": "object",
+                "properties": {
+                    "MapName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Message": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "SubscriptionModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "OrgId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "IsTrial": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "StartDate": {
+                        "description": "The start date of a subscription.",
+                        "type": "string"
+                    },
+                    "ExpirationDate": {
+                        "description": "The experation date of a subscription.",
+                        "type": "string"
+                    },
+                    "RecordsAllowed": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "RecordsProcessed": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "MonthlyUsage": {
+                        "description": "",
+                        "type": "array"
+                    }
+                }
+            },
+            "MonthlyUsage": {
+                "type": "object",
+                "properties": {
+                    "Date": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "RecordsProcessed": {
+                        "description": "",
+                        "type": "integer"
+                    }
+                }
+            },
+            "UserModel": {
+                "type": "object",
+                "properties": {
+                    "Email": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "FirstName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LastName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "UnderPostDefaults": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "OmittedFields": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "Company": {
+                        "description": "Gets or sets the company.",
+                        "type": "string"
+                    },
+                    "country": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "HttpReferrer": {
+                        "description": "Gets or sets the HTTP referrer.",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "IsApproved": {
+                        "description": "Indicates if the user's email needs to be validated prior to access",
+                        "type": "boolean"
+                    },
+                    "JobTitle": {
+                        "description": "Gets or sets the job title.",
+                        "type": "string"
+                    },
+                    "LeadSource": {
+                        "description": "Gets or sets the lead source.",
+                        "type": "string"
+                    },
+                    "Password": {
+                        "description": "Gets or sets the password.",
+                        "type": "string"
+                    },
+                    "Phone": {
+                        "description": "Gets or sets the phone.",
+                        "type": "string"
+                    },
+                    "Address": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "city": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "state": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "postalCode": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "UnderPostDefaults": {
+                "type": "object"
+            },
+            "OmittedFields": {
+                "type": "array"
+            },
+            "IUserDetail": {
+                "type": "object",
+                "properties": {
+                    "Company": {
+                        "description": "Gets or sets the company.",
+                        "type": "string"
+                    },
+                    "country": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "FirstName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "HttpReferrer": {
+                        "description": "Gets or sets the HTTP referrer.",
+                        "type": "string"
+                    },
+                    "JobTitle": {
+                        "description": "Gets or sets the job title.",
+                        "type": "string"
+                    },
+                    "LastName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "LeadSource": {
+                        "description": "Gets or sets the lead source.",
+                        "type": "string"
+                    },
+                    "Phone": {
+                        "description": "Gets or sets the phone.",
+                        "type": "string"
+                    },
+                    "state": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "UserInvitationModel": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "OrgId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "OrgName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Sender": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Message": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "InvitationDate": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "Status": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "RoleType": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "UserNotficationSettingsModel": {
+                "type": "object",
+                "properties": {
+                    "OrgName": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "tenantId": {
+                        "description": "The GUID \/ UUID",
+                        "type": "string"
+                    },
+                    "heartbeatEmail": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "failedRowsEmail": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "failedJobEmail": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "connectorActivationEmail": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "eventFailedJobEmail": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "systemUpdateEmail": {
+                        "description": "",
+                        "type": "boolean"
+                    }
+                }
+            }
+        }
+    }
+}
