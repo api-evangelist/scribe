@@ -1,5 +1,5 @@
 {
-    "id": "77e0d162ea93ee172d894f4515961035",
+    "id": "45617760e17e08e10f0e36771cc8c856",
     "name": "Scribe Swagger API",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "e1d638e8eeb883e25d562e42029f91fd",
+            "id": "9454f8735ac1b47c2b0a9ce393c7d499",
             "name": "Agents_GetAgents",
             "url": "http:\/\/api.scribesoft.com\/\/v1\/orgs\/{orgId}\/agents",
             "description": "Return a list of Agents",
@@ -65,11 +65,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "77e0d162ea93ee172d894f4515961035",
+            "collectionId": "45617760e17e08e10f0e36771cc8c856",
             "rawModeData": ""
         },
         {
-            "id": "040a6ff7c04f18fee3a8b92adefa849c",
+            "id": "0be603ce1d9b73712cccf01bdfa4170a",
             "name": "Agents_CaptureAgentLogs",
             "url": "http:\/\/api.scribesoft.com\/\/v1\/orgs\/{orgId}\/agents\/{agentId}\/logs",
             "description": "Capture Agent Logs",
@@ -103,11 +103,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "77e0d162ea93ee172d894f4515961035",
+            "collectionId": "45617760e17e08e10f0e36771cc8c856",
             "rawModeData": ""
         },
         {
-            "id": "7b48e026b2ec0e237141fe9cf281a3e4",
+            "id": "b83b9d0e91776d039a60ffe1c12007fb",
             "name": "Agents_GetAgentLogs",
             "url": "http:\/\/api.scribesoft.com\/\/v1\/orgs\/{orgId}\/agents\/{agentId}\/logs\/{logId}",
             "description": "Return Agent Logs",
@@ -148,11 +148,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "77e0d162ea93ee172d894f4515961035",
+            "collectionId": "45617760e17e08e10f0e36771cc8c856",
             "rawModeData": ""
         },
         {
-            "id": "abc449520580bad1ebbf81397a381eb9",
+            "id": "9ef2378e1f2d683366d18eb2562d3fa3",
             "name": "Agents_RestartAgent",
             "url": "http:\/\/api.scribesoft.com\/\/v1\/orgs\/{orgId}\/agents\/{agentId}\/restart",
             "description": "Restart an Agent",
@@ -193,11 +193,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "77e0d162ea93ee172d894f4515961035",
+            "collectionId": "45617760e17e08e10f0e36771cc8c856",
             "rawModeData": ""
         },
         {
-            "id": "656a18fd8e7b1e25e3c14c21ab9a892b",
+            "id": "976bccf64d8b94c0e99d1e710ceeebc2",
             "name": "Agents_GetAgent",
             "url": "http:\/\/api.scribesoft.com\/\/v1\/orgs\/{orgId}\/agents\/{id}",
             "description": "Return information about an Agent",
@@ -231,11 +231,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "77e0d162ea93ee172d894f4515961035",
+            "collectionId": "45617760e17e08e10f0e36771cc8c856",
             "rawModeData": ""
         },
         {
-            "id": "f831c22dd6911e570ce695f2310f16e7",
+            "id": "4dc78f79ed4cd3ed9d39359fdb19d8c1",
             "name": "Agents_UpdateAgent",
             "url": "http:\/\/api.scribesoft.com\/\/v1\/orgs\/{orgId}\/agents\/{id}",
             "description": "Modify an Agent",
@@ -269,7 +269,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "77e0d162ea93ee172d894f4515961035",
+            "collectionId": "45617760e17e08e10f0e36771cc8c856",
             "rawModeData": ""
         }
     ]
