@@ -1,0 +1,161 @@
+openapi: 3.1.0
+info:
+  title: Scribe Search & Retrieval Documents Teams API
+  version: 1.0.0
+  description: '
+
+    ## Scribe Search & Retrieval API
+
+
+    The Scribe Search & Retrieval API provides programmatic, read-only access to the documents in your organization''s knowledge base. It is designed for developers who want to integrate Scribe content — Scribe Documents and Knowledge Pages — into their own applications.
+
+
+    ### Authentication
+
+    All endpoints require an API key sent in the `X-API-Key` header. Each key is scoped to one or more teams; every response is restricted to content those teams can access.
+
+
+    ### Endpoints
+
+    - **Search documents** (`POST /v1/search/`) — full-text search across document name and description, with type, team, and date-range filters. Returns up to 20 results per request and is not paginated.
+
+    - **List documents** (`GET /v1/documents/`) — paginated listing of every document accessible to the API key, ordered newest-first, with the same type, team, and date-range filters.
+
+    - **Retrieve a document** (`GET /v1/documents/{id}/`) — fetch a single document by UUID, including per-action screenshot URLs (Scribe Documents) or structured Editor.js content (Knowledge Pages).
+
+    - **List teams** (`GET /v1/teams/`) — every team accessible to the API key. Use the returned `id` values as `team_ids` filters on the other endpoints.
+
+
+    ### Getting Started
+
+    1. Generate an API key from the [Settings](https://scribehow.com/settings?tab=developerAccess) page. The full key is shown only once.
+
+    2. Send it on every request as `X-API-Key: sc_1234567890abcdefg.hijklmnopqrstuvwx`.
+
+    3. Call `GET /v1/teams/` to discover the team IDs your key can use, then call any of the document endpoints.
+
+
+    ### Document Types
+
+    - **Scribe Documents** (`type: scribe`) — step-by-step process documentation. The `actions` array contains the steps; each action may include a `screenshot_url`.
+
+    - **Knowledge Pages** (`type: page`) — long-form reference content. The `content` field on the list and retrieve endpoints returns the page body as Editor.js JSON; `actions` is always empty.
+
+
+    ### Rate Limits
+
+    - **Per-minute limits**: a combined 300 requests/minute shared across `search` and `teams`; a combined 60 requests/minute shared across the document endpoints. Tracked per API key per source IP — clients calling from multiple egress IPs get an independent bucket on each one.
+
+    - **Monthly limits**: vary by subscription plan and apply across all endpoints except `teams`.
+
+    - When a limit is exceeded the API returns `429 Too Many Requests`.
+
+    '
+servers:
+- url: https://public-api.scribehow.com
+tags:
+- name: Teams
+paths:
+  /v1/teams/:
+    get:
+      operationId: v1_teams_list
+      description: Return every team accessible to your API key. Use the returned `id` values as `team_ids` filters on the search and document endpoints.
+      summary: List teams
+      tags:
+      - Teams
+      security:
+      - APIKey: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                ValidationError:
+                  value:
+                    field_name:
+                    - Enter a valid value.
+                  summary: Validation Error
+                InvalidRequestData:
+                  value:
+                    detail: Invalid input provided.
+                  summary: Invalid Request Data
+          description: Bad request - invalid request data or parameters.
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                MissingAuthentication:
+                  value:
+                    detail: Authentication credentials were not provided.
+                  summary: Missing Authentication
+                InvalidAPIKey:
+                  value:
+                    detail: Invalid API key.
+                  summary: Invalid API Key
+          description: Authentication credentials were not provided or are invalid.
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                PlanNotSupported:
+                  value:
+                    detail: Your plan does not support Public API access.
+                  summary: Plan Not Supported
+          description: Access denied - your plan does not support Public API access.
+        '429':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                MonthlyLimitExceeded:
+                  value:
+                    detail: You have exceeded your monthly limit of API calls.
+                  summary: Monthly Limit Exceeded
+                RateLimitExceeded:
+                  value:
+                    detail: Request was throttled. Expected available in 46 seconds.
+                  summary: Rate Limit Exceeded
+          description: Rate limit exceeded - either per-minute or monthly limit reached.
+components:
+  schemas:
+    Team:
+      type: object
+      description: A team — used both as the owner of a document and as a filter target.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          description: UUID of the team. Pass this as a `team_ids` filter on other endpoints.
+        name:
+          type: string
+          readOnly: true
+          description: Display name of the team.
+      required:
+      - id
+      - name
+  securitySchemes:
+    APIKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: 'API key authentication. Add your API key as the header value. Example: `X-API-Key: sc_1234567890abcdefg.hijklmnopqrstuvwx`'
