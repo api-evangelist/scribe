@@ -1,0 +1,754 @@
+openapi: 3.1.0
+info:
+  title: Scribe Search & Retrieval API
+  version: 1.0.0
+  description: |2
+
+    ## Scribe Search & Retrieval API
+
+    The Scribe Search & Retrieval API provides programmatic, read-only access to the documents in your organization's knowledge base. It is designed for developers who want to integrate Scribe content — Scribe Documents and Knowledge Pages — into their own applications.
+
+    ### Authentication
+    All endpoints require an API key sent in the `X-API-Key` header. Each key is scoped to one or more teams; every response is restricted to content those teams can access.
+
+    ### Endpoints
+    - **Search documents** (`POST /v1/search/`) — full-text search across document name and description, with type, team, and date-range filters. Returns up to 20 results per request and is not paginated.
+    - **List documents** (`GET /v1/documents/`) — paginated listing of every document accessible to the API key, ordered newest-first, with the same type, team, and date-range filters.
+    - **Retrieve a document** (`GET /v1/documents/{id}/`) — fetch a single document by UUID, including per-action screenshot URLs (Scribe Documents) or structured Editor.js content (Knowledge Pages).
+    - **List teams** (`GET /v1/teams/`) — every team accessible to the API key. Use the returned `id` values as `team_ids` filters on the other endpoints.
+
+    ### Getting Started
+    1. Generate an API key from the [Settings](https://scribehow.com/settings?tab=developerAccess) page. The full key is shown only once.
+    2. Send it on every request as `X-API-Key: sc_1234567890abcdefg.hijklmnopqrstuvwx`.
+    3. Call `GET /v1/teams/` to discover the team IDs your key can use, then call any of the document endpoints.
+
+    ### Document Types
+    - **Scribe Documents** (`type: scribe`) — step-by-step process documentation. The `actions` array contains the steps; each action may include a `screenshot_url`.
+    - **Knowledge Pages** (`type: page`) — long-form reference content. The `content` field on the list and retrieve endpoints returns the page body as Editor.js JSON; `actions` is always empty.
+
+    ### Rate Limits
+    - **Per-minute limits**: a combined 300 requests/minute shared across `search` and `teams`; a combined 60 requests/minute shared across the document endpoints. Tracked per API key per source IP — clients calling from multiple egress IPs get an independent bucket on each one.
+    - **Monthly limits**: vary by subscription plan and apply across all endpoints except `teams`.
+    - When a limit is exceeded the API returns `429 Too Many Requests`.
+paths:
+  /v1/documents/:
+    get:
+      operationId: v1_get_documents
+      description: Paginated list of every document accessible to your API key, ordered
+        by creation date (newest first). Supports filtering by type, team, and creation/update
+        date ranges. The default page size is 100 and the maximum is 100; use the
+        `limit` and `offset` query parameters to paginate.
+      summary: List documents
+      parameters:
+      - in: query
+        name: created__gte
+        schema:
+          type: string
+          format: date-time
+        description: Created at or after (ISO-8601)
+      - in: query
+        name: created__lte
+        schema:
+          type: string
+          format: date-time
+        description: Created at or before (ISO-8601)
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - in: query
+        name: team_ids
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+        explode: true
+        style: form
+      - in: query
+        name: type
+        schema:
+          type: string
+          enum:
+          - page
+          - scribe
+        description: |-
+          Restrict results to a single document type.
+
+          * `page` - Knowledge Page
+          * `scribe` - Scribe Document
+      - in: query
+        name: updated__gte
+        schema:
+          type: string
+          format: date-time
+        description: Last meaningful user edit at or after (ISO-8601). Targets a separate
+          column from the response `updated_at` field, which is bumped on every save.
+      - in: query
+        name: updated__lte
+        schema:
+          type: string
+          format: date-time
+        description: Last meaningful user edit at or before (ISO-8601). Targets a
+          separate column from the response `updated_at` field, which is bumped on
+          every save.
+      tags:
+      - Documents
+      security:
+      - APIKey: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedDocumentDetailDBList'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                ValidationError:
+                  value:
+                    field_name:
+                    - Enter a valid value.
+                  summary: Validation Error
+                InvalidRequestData:
+                  value:
+                    detail: Invalid input provided.
+                  summary: Invalid Request Data
+          description: Bad request - invalid request data or parameters.
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                MissingAuthentication:
+                  value:
+                    detail: Authentication credentials were not provided.
+                  summary: Missing Authentication
+                InvalidAPIKey:
+                  value:
+                    detail: Invalid API key.
+                  summary: Invalid API Key
+          description: Authentication credentials were not provided or are invalid.
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                PlanNotSupported:
+                  value:
+                    detail: Your plan does not support Public API access.
+                  summary: Plan Not Supported
+          description: Access denied - your plan does not support Public API access.
+        '429':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                MonthlyLimitExceeded:
+                  value:
+                    detail: You have exceeded your monthly limit of API calls.
+                  summary: Monthly Limit Exceeded
+                RateLimitExceeded:
+                  value:
+                    detail: Request was throttled. Expected available in 46 seconds.
+                  summary: Rate Limit Exceeded
+          description: Rate limit exceeded - either per-minute or monthly limit reached.
+  /v1/documents/{id}/:
+    get:
+      operationId: v1_retrieve_document
+      description: Fetch a single document by its UUID. The response includes per-action
+        screenshot URLs for Scribe Documents and structured `content` for Knowledge
+        Pages.
+      summary: Retrieve a document
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - Documents
+      security:
+      - APIKey: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDetailDB'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                ValidationError:
+                  value:
+                    field_name:
+                    - Enter a valid value.
+                  summary: Validation Error
+                InvalidRequestData:
+                  value:
+                    detail: Invalid input provided.
+                  summary: Invalid Request Data
+          description: Bad request - invalid request data or parameters.
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                MissingAuthentication:
+                  value:
+                    detail: Authentication credentials were not provided.
+                  summary: Missing Authentication
+                InvalidAPIKey:
+                  value:
+                    detail: Invalid API key.
+                  summary: Invalid API Key
+          description: Authentication credentials were not provided or are invalid.
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                PlanNotSupported:
+                  value:
+                    detail: Your plan does not support Public API access.
+                  summary: Plan Not Supported
+          description: Access denied - your plan does not support Public API access.
+        '429':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                MonthlyLimitExceeded:
+                  value:
+                    detail: You have exceeded your monthly limit of API calls.
+                  summary: Monthly Limit Exceeded
+                RateLimitExceeded:
+                  value:
+                    detail: Request was throttled. Expected available in 46 seconds.
+                  summary: Rate Limit Exceeded
+          description: Rate limit exceeded - either per-minute or monthly limit reached.
+  /v1/search/:
+    post:
+      operationId: v1_search_documents
+      description: Run a full-text search across the document name and description
+        fields. Results are limited to documents the API key can access and can be
+        narrowed further by type, team, and creation/update date ranges. Returns up
+        to `limit` results (default 15, maximum 20) — this endpoint is not paginated.
+      summary: Search documents
+      tags:
+      - Search
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequestRequest'
+        required: true
+      security:
+      - APIKey: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DocumentES'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                ValidationError:
+                  value:
+                    field_name:
+                    - Enter a valid value.
+                  summary: Validation Error
+                InvalidRequestData:
+                  value:
+                    detail: Invalid input provided.
+                  summary: Invalid Request Data
+          description: Bad request - invalid request data or parameters.
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                MissingAuthentication:
+                  value:
+                    detail: Authentication credentials were not provided.
+                  summary: Missing Authentication
+                InvalidAPIKey:
+                  value:
+                    detail: Invalid API key.
+                  summary: Invalid API Key
+          description: Authentication credentials were not provided or are invalid.
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                PlanNotSupported:
+                  value:
+                    detail: Your plan does not support Public API access.
+                  summary: Plan Not Supported
+          description: Access denied - your plan does not support Public API access.
+        '429':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                MonthlyLimitExceeded:
+                  value:
+                    detail: You have exceeded your monthly limit of API calls.
+                  summary: Monthly Limit Exceeded
+                RateLimitExceeded:
+                  value:
+                    detail: Request was throttled. Expected available in 46 seconds.
+                  summary: Rate Limit Exceeded
+          description: Rate limit exceeded - either per-minute or monthly limit reached.
+  /v1/teams/:
+    get:
+      operationId: v1_teams_list
+      description: Return every team accessible to your API key. Use the returned
+        `id` values as `team_ids` filters on the search and document endpoints.
+      summary: List teams
+      tags:
+      - Teams
+      security:
+      - APIKey: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                ValidationError:
+                  value:
+                    field_name:
+                    - Enter a valid value.
+                  summary: Validation Error
+                InvalidRequestData:
+                  value:
+                    detail: Invalid input provided.
+                  summary: Invalid Request Data
+          description: Bad request - invalid request data or parameters.
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                MissingAuthentication:
+                  value:
+                    detail: Authentication credentials were not provided.
+                  summary: Missing Authentication
+                InvalidAPIKey:
+                  value:
+                    detail: Invalid API key.
+                  summary: Invalid API Key
+          description: Authentication credentials were not provided or are invalid.
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                PlanNotSupported:
+                  value:
+                    detail: Your plan does not support Public API access.
+                  summary: Plan Not Supported
+          description: Access denied - your plan does not support Public API access.
+        '429':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+              examples:
+                MonthlyLimitExceeded:
+                  value:
+                    detail: You have exceeded your monthly limit of API calls.
+                  summary: Monthly Limit Exceeded
+                RateLimitExceeded:
+                  value:
+                    detail: Request was throttled. Expected available in 46 seconds.
+                  summary: Rate Limit Exceeded
+          description: Rate limit exceeded - either per-minute or monthly limit reached.
+components:
+  schemas:
+    ActionDB:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Human-readable description of the action.
+        id:
+          type: string
+          format: uuid
+          description: UUID of the action (Scribe Document step).
+        screenshot_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          readOnly: true
+          description: URL of the screenshot captured for this action. `null` when
+            the action has no externally visible screenshot.
+      required:
+      - description
+      - id
+      - screenshot_url
+    ActionES:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Human-readable description of the action.
+        id:
+          type: string
+          format: uuid
+          description: UUID of the action (Scribe Document step).
+      required:
+      - description
+      - id
+    DocumentDetailDB:
+      type: object
+      description: A document with its full body — actions for Scribe Documents and
+        structured content for Knowledge Pages.
+      properties:
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActionDB'
+          readOnly: true
+          description: Steps for Scribe Documents. Always an empty array for Knowledge
+            Pages.
+        content:
+          type:
+          - object
+          - 'null'
+          additionalProperties: {}
+          readOnly: true
+          description: Structured Editor.js content for Knowledge Pages. `null` for
+            Scribe Documents — use `actions` to read their step content.
+        created_at:
+          type: string
+          format: date-time
+          description: ISO-8601 timestamp of when the document was created.
+        description:
+          type: string
+          description: Short description of the document.
+        id:
+          type: string
+          format: uuid
+          description: UUID of the document.
+        link:
+          type: string
+          format: uri
+          readOnly: true
+          description: Public URL where the document can be viewed on scribehow.com.
+        name:
+          type: string
+          description: Display name of the document.
+        team:
+          allOf:
+          - $ref: '#/components/schemas/Team'
+          description: Team that owns the document.
+        type:
+          allOf:
+          - $ref: '#/components/schemas/TypeEnum'
+          description: '`scribe` for Scribe Documents, `page` for Knowledge Pages.'
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO-8601 timestamp of the last update to the document record.
+        user_owner:
+          oneOf:
+          - $ref: '#/components/schemas/UserDB'
+          - type: 'null'
+          description: User who owns the document. `null` when the owner has been
+            deleted.
+      required:
+      - actions
+      - content
+      - created_at
+      - description
+      - id
+      - link
+      - name
+      - team
+      - type
+      - updated_at
+    DocumentES:
+      type: object
+      description: A document returned by the search endpoint.
+      properties:
+        actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActionES'
+          description: Steps for Scribe Documents. Always an empty array for Knowledge
+            Pages.
+        created_at:
+          type: string
+          format: date-time
+          description: ISO-8601 timestamp of when the document was created.
+        description:
+          type: string
+          description: Short description of the document.
+        id:
+          type: string
+          format: uuid
+          description: UUID of the document.
+        link:
+          type: string
+          format: uri
+          description: Public URL where the document can be viewed on scribehow.com.
+        name:
+          type: string
+          description: Display name of the document.
+        team:
+          allOf:
+          - $ref: '#/components/schemas/Team'
+          description: Team that owns the document.
+        type:
+          allOf:
+          - $ref: '#/components/schemas/TypeEnum'
+          description: |-
+            `scribe` for Scribe Documents, `page` for Knowledge Pages.
+
+            * `page` - Knowledge Page
+            * `scribe` - Scribe Document
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO-8601 timestamp of the last update to the document record.
+        user_owner:
+          oneOf:
+          - $ref: '#/components/schemas/UserES'
+          - type: 'null'
+          description: User who owns the document. `null` when the owner has been
+            deleted.
+      required:
+      - actions
+      - created_at
+      - description
+      - id
+      - link
+      - name
+      - team
+      - type
+      - updated_at
+    PaginatedDocumentDetailDBList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentDetailDB'
+    SearchRequestRequest:
+      type: object
+      properties:
+        created_at__gte:
+          type: string
+          format: date-time
+          title: Created at or after (ISO-8601)
+        created_at__lte:
+          type: string
+          format: date-time
+          title: Created at or before (ISO-8601)
+        limit:
+          type: integer
+          maximum: 20
+          minimum: 1
+          default: 15
+          title: Maximum number of results to return (max 20)
+        search:
+          type: string
+          minLength: 1
+          title: Search term
+          description: Free-form text matched against document names and descriptions.
+            The full string is treated as a single query — there is no special handling
+            for commas or other separators.
+        sort_by:
+          allOf:
+          - $ref: '#/components/schemas/SortByEnum'
+          default: relevance
+          title: Sort order
+        team_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Restrict results to documents owned by these teams. When omitted,
+            all teams accessible to the API key are searched. Use `GET /v1/teams/`
+            to list valid IDs.
+        type:
+          allOf:
+          - $ref: '#/components/schemas/TypeEnum'
+          title: Document type
+          description: |-
+            Restrict results to a single document type.
+
+            * `page` - Knowledge Page
+            * `scribe` - Scribe Document
+        updated_at__gte:
+          type: string
+          format: date-time
+          title: Updated at or after (ISO-8601)
+        updated_at__lte:
+          type: string
+          format: date-time
+          title: Updated at or before (ISO-8601)
+      required:
+      - search
+    SortByEnum:
+      enum:
+      - -created_at
+      - -updated_at
+      - created_at
+      - relevance
+      - updated_at
+      type: string
+      description: |-
+        * `-created_at` - Created At Descending
+        * `-updated_at` - Updated At Descending
+        * `created_at` - Created At Ascending
+        * `relevance` - Relevance
+        * `updated_at` - Updated At Ascending
+    Team:
+      type: object
+      description: A team — used both as the owner of a document and as a filter target.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          description: UUID of the team. Pass this as a `team_ids` filter on other
+            endpoints.
+        name:
+          type: string
+          readOnly: true
+          description: Display name of the team.
+      required:
+      - id
+      - name
+    TypeEnum:
+      enum:
+      - page
+      - scribe
+      type: string
+    UserDB:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: Email address of the user.
+        id:
+          type: string
+          format: uuid
+          description: UUID of the user.
+        name:
+          type: string
+          description: Full name of the user.
+      required:
+      - email
+      - id
+      - name
+    UserES:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: Email address of the user.
+        id:
+          type: string
+          format: uuid
+          description: UUID of the user.
+        name:
+          type: string
+          description: Full name of the user.
+      required:
+      - email
+      - id
+      - name
+  securitySchemes:
+    APIKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: 'API key authentication. Add your API key as the header value.
+        Example: `X-API-Key: sc_1234567890abcdefg.hijklmnopqrstuvwx`'
+servers:
+- url: https://public-api.scribehow.com

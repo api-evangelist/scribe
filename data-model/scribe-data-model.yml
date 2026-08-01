@@ -1,0 +1,38 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/scribe-search-retrieval-openapi.yml components.schemas
+entities:
+- name: Document
+  id: uuid
+  schemas: [DocumentDetailDB, DocumentES]
+  fields: [id, name, description, type, link, created_at, updated_at, team, user_owner, actions, content]
+  type_enum: [scribe, page]
+  note: '`scribe` = Scribe Document (step-by-step, populated `actions`); `page` = Knowledge Page (long-form, Editor.js `content`).'
+- name: Team
+  id: uuid
+  schemas: [Team]
+  fields: [id, name]
+- name: User
+  id: uuid
+  schemas: [UserDB, UserES]
+  fields: [id, name, email]
+- name: Action
+  id: uuid
+  schemas: [ActionDB, ActionES]
+  fields: [id, description, screenshot_url]
+  note: A single step within a Scribe Document; screenshot_url present only on the detail (DB) shape.
+relationships:
+- from: Document
+  to: Team
+  kind: belongs_to
+  via: team
+- from: Document
+  to: User
+  kind: belongs_to
+  via: user_owner
+  note: nullable when the owner has been deleted
+- from: Document
+  to: Action
+  kind: has_many
+  via: actions
+  note: empty array for Knowledge Pages

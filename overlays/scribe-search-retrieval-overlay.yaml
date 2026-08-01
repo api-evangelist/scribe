@@ -1,0 +1,23 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Scribe Search & Retrieval API
+  version: 1.0.0
+extends: openapi/scribe-search-retrieval-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: scribe
+    x-apievangelist-category: [documentation, knowledge-management, search, ai-ml]
+    x-apievangelist-access: enterprise-plan-only
+    x-apievangelist-auth: api-key-header
+- target: $.info
+  update:
+    x-apievangelist-rate-limits: rate-limits/scribe-rate-limits.yml
+    x-apievangelist-errors: errors/scribe-problem-types.yml
+    x-apievangelist-conventions: conventions/scribe-conventions.yml
+- target: $.paths['/v1/search/'].post
+  update:
+    x-apievangelist-note: Primary read entry point for agents — full-text search over the org knowledge base; not paginated (max 20).
+- target: $.paths['/v1/documents/{id}/'].get
+  update:
+    x-apievangelist-note: Returns per-action screenshot URLs for Scribe Documents and Editor.js content for Knowledge Pages.

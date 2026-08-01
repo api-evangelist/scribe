@@ -1,0 +1,51 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/scribe-search-retrieval-openapi.yml + https://public-api.scribehow.com/schema/redoc/
+authentication:
+  style: api_key
+  header: X-API-Key
+  key_format: 'sc_<id>.<secret> (e.g. sc_1234567890abcdefg.hijklmnopqrstuvwx)'
+  scope: Each key is scoped to one or more teams; every response is restricted to content those teams can access.
+  provisioning: Keys generated from Settings > Developer Access (https://scribehow.com/settings?tab=developerAccess); full key shown once.
+  cross_ref: authentication/scribe-authentication.yml
+idempotency:
+  supported: false
+  note: >-
+    The Public API is read-only (GET listings/retrieve, plus POST /v1/search/
+    which is a non-mutating query). No idempotency-key header is documented and
+    none is needed — there are no create/update/delete operations.
+pagination:
+  style: limit-offset
+  applies_to: [v1_get_documents]
+  params: [limit, offset]
+  defaults: {limit: 100, max_limit: 100}
+  response_fields: [count, next, previous, results]
+  note: Search (POST /v1/search/) is NOT paginated — returns up to 20 results (default 15) via the `limit` body field.
+filtering:
+  fields: [type, team_ids, created__gte, created__lte, updated__gte, updated__lte]
+  type_enum: [page, scribe]
+  sort_by: ['-created_at', '-updated_at', created_at, relevance, updated_at]
+  note: >-
+    updated__gte/updated__lte target a "last meaningful user edit" column,
+    distinct from the response `updated_at` which bumps on every save.
+versioning:
+  style: uri-path
+  current: v1
+  cross_ref: lifecycle/scribe-lifecycle.yml
+error_envelope:
+  shape: '{ "detail": "<message>" }; 400 validation may return { "field": ["msg"] }'
+  media_type: application/json
+  cross_ref: errors/scribe-problem-types.yml
+rate_limiting:
+  per_minute:
+    search_and_teams: 300 requests/minute (combined)
+    documents: 60 requests/minute (combined across list + retrieve)
+  monthly: Varies by subscription plan; applies to all endpoints except teams.
+  tracking: Per API key per source IP (independent bucket per egress IP).
+  exceeded_status: 429
+  cross_ref: rate-limits/scribe-rate-limits.yml
+identifiers:
+  documents: UUID
+  teams: UUID
+  users: UUID
+  actions: UUID

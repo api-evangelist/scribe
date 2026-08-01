@@ -1,0 +1,18 @@
+{
+  "provider": "scribe",
+  "sources": [
+    "scribe-documents-api-openapi.yml",
+    "scribe-search-api-openapi.yml",
+    "scribe-teams-api-openapi.yml"
+  ],
+  "outputs": [
+    "scribe-documents-api-openapi.yml",
+    "scribe-search-api-openapi.yml",
+    "scribe-teams-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

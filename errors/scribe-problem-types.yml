@@ -1,0 +1,40 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/scribe-search-retrieval-openapi.yml
+format: drf-detail
+envelope: >-
+  Errors return a JSON object. Most return `{ "detail": "<message>" }`;
+  400 validation errors may instead return field-keyed arrays, e.g.
+  `{ "field_name": ["Enter a valid value."] }`. Media type is application/json
+  (not application/problem+json).
+problems:
+- status: 400
+  title: Bad Request
+  meaning: Invalid request data or parameters.
+  examples:
+  - '{"field_name": ["Enter a valid value."]}'
+  - '{"detail": "Invalid input provided."}'
+  applies_to: [v1_get_documents, v1_retrieve_document, v1_search_documents, v1_teams_list]
+- status: 401
+  title: Unauthorized
+  meaning: Authentication credentials were not provided or the API key is invalid.
+  remediation: Send a valid key in the X-API-Key header.
+  examples:
+  - '{"detail": "Authentication credentials were not provided."}'
+  - '{"detail": "Invalid API key."}'
+  applies_to: [v1_get_documents, v1_retrieve_document, v1_search_documents, v1_teams_list]
+- status: 403
+  title: Forbidden
+  meaning: Your subscription plan does not support Public API access (Enterprise only).
+  remediation: Upgrade to an Enterprise plan to enable Public API access.
+  examples:
+  - '{"detail": "Your plan does not support Public API access."}'
+  applies_to: [v1_get_documents, v1_retrieve_document, v1_search_documents, v1_teams_list]
+- status: 429
+  title: Too Many Requests
+  meaning: Per-minute or monthly rate limit exceeded.
+  remediation: Back off; the message includes seconds until retry. See rate-limits/scribe-rate-limits.yml.
+  examples:
+  - '{"detail": "You have exceeded your monthly limit of API calls."}'
+  - '{"detail": "Request was throttled. Expected available in 46 seconds."}'
+  applies_to: [v1_get_documents, v1_retrieve_document, v1_search_documents, v1_teams_list]

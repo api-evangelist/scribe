@@ -1,0 +1,62 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/scribe-search-retrieval-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 4
+  by_action_class:
+    connected: 3
+    acting: 1
+  by_consequence:
+    read: 3
+    write: 1
+  human_in_the_loop_required: 0
+operations:
+- path: /v1/documents/
+  method: get
+  operationId: v1_get_documents
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/documents/{id}/
+  method: get
+  operationId: v1_retrieve_document
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/search/
+  method: post
+  operationId: v1_search_documents
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/teams/
+  method: get
+  operationId: v1_teams_list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

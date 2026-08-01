@@ -1,8 +1,30 @@
 aid: scribe
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/scribe.png
 name: Scribe
-description: 'Scribe is a company surfaced as a portfolio company of amplify-partners, redpoint-ventures,
-  tiger-global and added to the API Evangelist network as a stub for enrichment. Sector: ai-ml. This profile
-  is a lead awaiting the enrichment pipeline.'
+description: >-
+  Scribe (scribehow) is an AI workflow-documentation platform founded in 2019 that
+  automatically turns any process or software walkthrough into a step-by-step guide.
+  Its products — Scribe Capture, the knowledge base, and the newer Scribe Optimize
+  workflow-mapping platform — are used by more than five million people across a large
+  share of the Fortune 500. For developers, Scribe publishes a read-only Search &
+  Retrieval API (OpenAPI 3.1) that searches, lists, and retrieves an organization's
+  Scribe Documents and Knowledge Pages for integration into custom applications and AI
+  agents. Public API access is an Enterprise-plan feature authenticated with a static
+  API key sent in the X-API-Key header. The company is backed by Amplify Partners,
+  Redpoint Ventures, Tiger Global, StepStone, Morado Ventures, and New York Life Ventures,
+  and reached a $1.3B valuation with its 2025 Series C.
 url: https://raw.githubusercontent.com/api-evangelist/scribe/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,15 +32,57 @@ x-backed-by:
 - amplify-partners
 - redpoint-ventures
 - tiger-global
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: active
+x-tier-reason: enriched-from-public-api
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Ai Ml
-apis: []
+- Documentation
+- Knowledge Management
+- Search
+- Workflow
+- Process Documentation
+- Enterprise
+apis:
+- aid: scribe:scribe-documents-api
+  name: Scribe Documents API
+  description: The Documents API from Scribe — 2 operation(s) for documents.
+  humanURL: https://public-api.scribehow.com/schema/redoc/
+  baseURL: https://public-api.scribehow.com
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/scribe-documents-api-openapi.yml
+  - type: APIReference
+    url: https://public-api.scribehow.com/schema/redoc/
+- aid: scribe:scribe-search-api
+  name: Scribe Search API
+  description: The Search API from Scribe — 1 operation(s) for search.
+  humanURL: https://public-api.scribehow.com/schema/redoc/
+  baseURL: https://public-api.scribehow.com
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/scribe-search-api-openapi.yml
+  - type: APIReference
+    url: https://public-api.scribehow.com/schema/redoc/
+- aid: scribe:scribe-teams-api
+  name: Scribe Teams API
+  description: The Teams API from Scribe — 1 operation(s) for teams.
+  humanURL: https://public-api.scribehow.com/schema/redoc/
+  baseURL: https://public-api.scribehow.com
+  tags:
+  - Teams
+  properties:
+  - type: OpenAPI
+    url: openapi/scribe-teams-api-openapi.yml
+  - type: APIReference
+    url: https://public-api.scribehow.com/schema/redoc/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -27,3 +91,58 @@ maintainers:
 common:
 - type: Website
   url: https://scribe.com
+- type: Documentation
+  url: https://public-api.scribehow.com/schema/redoc/
+- type: APIReference
+  url: https://public-api.scribehow.com/schema/redoc/
+- type: GettingStarted
+  url: https://scribehow.com/settings?tab=developerAccess
+- type: Support
+  url: https://support.scribehow.com/hc/en-us
+- type: Blog
+  url: https://scribe.com/library
+- type: Pricing
+  url: https://scribe.com/pricing
+- type: SignUp
+  url: https://scribehow.com/signup?plan=free
+- type: TermsOfService
+  url: https://scribe.com/legal/terms
+- type: PrivacyPolicy
+  url: https://scribe.com/legal/privacy
+- type: StatusPage
+  url: https://status.scribe.com
+- type: Compliance
+  url: https://scribe.com/security
+- type: TrustCenter
+  url: security/scribe-trust-center.yml
+- type: Authentication
+  url: authentication/scribe-authentication.yml
+- type: Conventions
+  url: conventions/scribe-conventions.yml
+- type: ErrorCatalog
+  url: errors/scribe-problem-types.yml
+- type: RateLimits
+  url: rate-limits/scribe-rate-limits.yml
+- type: Lifecycle
+  url: lifecycle/scribe-lifecycle.yml
+- type: Conformance
+  url: conformance/scribe-conformance.yml
+- type: DataModel
+  url: data-model/scribe-data-model.yml
+- type: DomainSecurity
+  url: security/scribe-domain-security.yml
+- type: WellKnown
+  url: well-known/scribe-well-known.yml
+- type: MCPServer
+  url: mcp/scribe-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/scribe-agentic-access.yml
+- type: LLMsTxt
+  url: llms/scribe-llms.txt
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 18
+  pass: local-v1

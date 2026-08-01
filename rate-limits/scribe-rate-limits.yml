@@ -1,0 +1,23 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/scribe-search-retrieval-openapi.yml (info.description Rate Limits)
+signaling:
+  exceeded_status: 429
+  retry_hint: 'Message includes seconds until retry, e.g. "Request was throttled. Expected available in 46 seconds."'
+  headers: null
+rate_limits:
+- name: search-and-teams per-minute
+  limit_count: 300
+  window: minute
+  scope: combined across POST /v1/search/ and GET /v1/teams/
+  tracked_by: per API key per source IP
+- name: documents per-minute
+  limit_count: 60
+  window: minute
+  scope: combined across GET /v1/documents/ and GET /v1/documents/{id}/
+  tracked_by: per API key per source IP
+- name: monthly quota
+  limit_count: null
+  window: month
+  scope: all endpoints except /v1/teams/
+  note: Varies by subscription plan (Enterprise). Exceeding returns 429 "monthly limit".

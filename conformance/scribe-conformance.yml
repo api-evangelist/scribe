@@ -1,0 +1,38 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/scribe-search-retrieval-openapi.yml + https://scribe.com/security + https://trust.scribehow.com/resources
+standards:
+- id: oauth2
+  conforms: false
+  evidence: API uses static apiKey (X-API-Key) auth only; no oauth2 securityScheme.
+- id: openid-connect
+  conforms: false
+- id: apikey-auth
+  conforms: true
+  evidence: securitySchemes.APIKey type apiKey in header X-API-Key
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors return a JSON object with a `detail` string (DRF-style), not
+    application/problem+json media type. See errors/scribe-problem-types.yml.
+- id: rest-json
+  conforms: true
+  evidence: JSON request/response over HTTPS, resource-oriented paths (/v1/documents/, /v1/teams/).
+- id: pagination-limit-offset
+  conforms: true
+  evidence: GET /v1/documents/ uses limit/offset with count/next/previous envelope (PaginatedDocumentDetailDBList).
+- id: soc2-type-ii
+  conforms: true
+  evidence: SOC 2 Type II listed on scribe.com/security and trust.scribehow.com.
+- id: iso-27001
+  conforms: true
+  evidence: ISO 27001 listed on scribe.com/security and trust center.
+- id: hipaa
+  conforms: true
+  evidence: HIPAA compliance listed on scribe.com/security.
+- id: ferpa
+  conforms: true
+  evidence: FERPA compliance listed on scribe.com/security.
+- id: gdpr
+  conforms: true
+  evidence: GDPR + US State Privacy Laws listed on scribe.com/security.

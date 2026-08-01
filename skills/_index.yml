@@ -1,0 +1,12 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/scribe-search-retrieval-openapi.yml
+skills:
+- file: scribe-search-knowledge-base.md
+  name: Search the Scribe knowledge base
+  api: openapi/scribe-search-retrieval-openapi.yml
+  operations: [v1_teams_list, v1_search_documents, v1_retrieve_document]
+- file: scribe-sync-documents.md
+  name: Sync Scribe documents into an external system
+  api: openapi/scribe-search-retrieval-openapi.yml
+  operations: [v1_teams_list, v1_get_documents, v1_retrieve_document]

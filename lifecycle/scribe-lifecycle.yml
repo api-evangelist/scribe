@@ -1,0 +1,20 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/scribe-search-retrieval-openapi.yml + https://status.scribe.com + https://scribe.com/security
+versioning:
+  scheme: uri-path
+  current: v1
+  evidence: All Search & Retrieval API paths are prefixed /v1/ (e.g. /v1/documents/, /v1/search/, /v1/teams/).
+  docs: https://public-api.scribehow.com/schema/redoc/
+deprecation:
+  policy_url: null
+  sunset_header: null
+  note: No published deprecation/sunset policy found for the Public API.
+sla:
+  url: null
+  uptime_target: null
+  backup_rto: 8 hours
+  backup_rpo: 24 hours
+  evidence: RTO/RPO published on scribe.com/security (infrastructure resilience, not an API SLA).
+status_page: https://status.scribe.com
+deprecated_operations: []

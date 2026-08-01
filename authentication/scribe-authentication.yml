@@ -1,0 +1,17 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/scribe-search-retrieval-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: APIKey
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  description: 'API key authentication. Add your API key as the header value. Example: `X-API-Key:
+    sc_1234567890abcdefg.hijklmnopqrstuvwx`'
+  sources:
+  - openapi/scribe-search-retrieval-openapi.yml

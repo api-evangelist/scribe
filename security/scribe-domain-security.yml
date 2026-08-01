@@ -1,0 +1,28 @@
+generated: '2026-07-21'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: scribe.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 18 01:29:53 2026 GMT
+  hsts: true
+  hsts_max_age: 15552000
+- host: public-api.scribehow.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  3 10:31:14 2026 GMT
+  hsts: null
+domains:
+- domain: scribe.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+- domain: scribehow.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
