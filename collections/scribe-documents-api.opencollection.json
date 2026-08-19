@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scribe Search & Retrieval Documents API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.scribehow.com/v1/documents/",
+            "params": [
+              {
+                "name": "created__gte",
+                "value": "",
+                "type": "query",
+                "description": "Created at or after (ISO-8601)"
+              },
+              {
+                "name": "created__lte",
+                "value": "",
+                "type": "query",
+                "description": "Created at or before (ISO-8601)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The initial index from which to return the results."
+              },
+              {
+                "name": "team_ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to a single document type.\n\n* `page` - Knowledge Page\n* `scribe` - Scribe Document"
+              },
+              {
+                "name": "updated__gte",
+                "value": "",
+                "type": "query",
+                "description": "Last meaningful user edit at or after (ISO-8601). Targets a separate column from the response `updated_at` field, which is bumped on every save."
+              },
+              {
+                "name": "updated__lte",
+                "value": "",
+                "type": "query",
+                "description": "Last meaningful user edit at or before (ISO-8601). Targets a separate column from the response `updated_at` field, which is bumped on every save."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Paginated list of every document accessible to your API key, ordered by creation date (newest first). Supports filtering by type, team, and creation/update date ranges. The default page size is 100 and the maximum is 100; use the `limit` and `offset` query parameters to paginate."
+        },
+        {
+          "info": {
+            "name": "Retrieve a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.scribehow.com/v1/documents/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetch a single document by its UUID. The response includes per-action screenshot URLs for Scribe Documents and structured `content` for Knowledge Pages."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scribe & Retrieval Documents Search API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.scribehow.com/v1/search/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Run a full-text search across the document name and description fields. Results are limited to documents the API key can access and can be narrowed further by type, team, and creation/update date ranges. Returns up to `limit` results (default 15, maximum 20) — this endpoint is not paginated."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

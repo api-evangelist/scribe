@@ -1,0 +1,362 @@
+{
+  "item": [
+    {
+      "id": "89d0e2ea-788e-4818-8090-f3e537172ee1",
+      "name": "Search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "46689edd-65a0-4e3c-9202-616984369566",
+          "name": "Search documents",
+          "request": {
+            "name": "Search documents",
+            "description": {
+              "content": "Run a full-text search across the document name and description fields. Results are limited to documents the API key can access and can be narrowed further by type, team, and creation/update date ranges. Returns up to `limit` results (default 15, maximum 20) — this endpoint is not paginated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "search",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"search\": \"<string>\",\n  \"created_at__gte\": \"<dateTime>\",\n  \"created_at__lte\": \"<dateTime>\",\n  \"limit\": 15,\n  \"sort_by\": \"relevance\",\n  \"team_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"type\": \"<string>\",\n  \"updated_at__gte\": \"<dateTime>\",\n  \"updated_at__lte\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "119fa173-dd36-4361-b29f-cf55a2b094cc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "search",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"search\": \"<string>\",\n  \"created_at__gte\": \"<dateTime>\",\n  \"created_at__lte\": \"<dateTime>\",\n  \"limit\": 15,\n  \"sort_by\": \"relevance\",\n  \"team_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"type\": \"scribe\",\n  \"updated_at__gte\": \"<dateTime>\",\n  \"updated_at__lte\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"actions\": [\n      {\n        \"description\": \"string\",\n        \"id\": \"95529c53-d902-57d1-82f8-af32da1a8557\"\n      },\n      {\n        \"description\": \"string\",\n        \"id\": \"c9dd6f6d-5873-f9e5-b91f-1c17bfc279fe\"\n      }\n    ],\n    \"created_at\": \"1966-08-23T18:13:48.594Z\",\n    \"description\": \"string\",\n    \"id\": \"1b7357b4-22d2-2eb0-0cb9-11e110654f37\",\n    \"link\": \"http://KcEFsHIxchfglpaDVpBd.cfp55pg89X6v8jVq.D6rbVV1HsR0dIbY8GOFJW3j6ZnCfyXrP+G6M+jOO\",\n    \"name\": \"string\",\n    \"team\": {\n      \"id\": \"fb2d4231-22d8-66f2-dfc1-576919168fbe\",\n      \"name\": \"string\"\n    },\n    \"type\": \"scribe\",\n    \"updated_at\": \"1973-10-10T01:46:06.993Z\",\n    \"user_owner\": {\n      \"email\": \"kIhVcvha9XL3dC@cUwBuqvDEf.vkwf\",\n      \"id\": \"00b4b369-d66d-127f-be62-6da1f8a0b30b\",\n      \"name\": \"string\"\n    }\n  },\n  {\n    \"actions\": [\n      {\n        \"description\": \"string\",\n        \"id\": \"0efd1eb3-d19f-757c-6988-00f872b84923\"\n      },\n      {\n        \"description\": \"string\",\n        \"id\": \"688a8aec-120f-c572-0ddc-5262fce0a2ba\"\n      }\n    ],\n    \"created_at\": \"2017-06-26T15:34:35.848Z\",\n    \"description\": \"string\",\n    \"id\": \"190b482c-844e-ec85-8425-a71490e13a7e\",\n    \"link\": \"http://LLfCxjfkAIAnXPNNjwu.xsA8+6yTeY3XHaH5Zub+.2FuW7dlDIEmugQoeFQZMEhUIS\",\n    \"name\": \"string\",\n    \"team\": {\n      \"id\": \"5d165b1d-caa5-6578-67fb-e0bc8dd3b82b\",\n      \"name\": \"string\"\n    },\n    \"type\": \"page\",\n    \"updated_at\": \"2023-04-12T15:26:13.947Z\",\n    \"user_owner\": {\n      \"email\": \"Wzl@LGZNQXYvYXhnwaaub.wbl\",\n      \"id\": \"9b2482ac-f9da-d78c-f53c-f372ed90e5a9\",\n      \"name\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6aa6bb08-efcd-44b7-b7cc-7dcaebf7b158",
+              "name": "Bad request - invalid request data or parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "search",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"search\": \"<string>\",\n  \"created_at__gte\": \"<dateTime>\",\n  \"created_at__lte\": \"<dateTime>\",\n  \"limit\": 15,\n  \"sort_by\": \"relevance\",\n  \"team_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"type\": \"scribe\",\n  \"updated_at__gte\": \"<dateTime>\",\n  \"updated_at__lte\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"field_name\": [\n    \"Enter a valid value.\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a3d6fce-a16d-4238-98c7-21233ce9feb5",
+              "name": "Authentication credentials were not provided or are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "search",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"search\": \"<string>\",\n  \"created_at__gte\": \"<dateTime>\",\n  \"created_at__lte\": \"<dateTime>\",\n  \"limit\": 15,\n  \"sort_by\": \"relevance\",\n  \"team_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"type\": \"scribe\",\n  \"updated_at__gte\": \"<dateTime>\",\n  \"updated_at__lte\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Authentication credentials were not provided.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "484c8396-6e0e-421e-b437-c3930591f452",
+              "name": "Access denied - your plan does not support Public API access.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "search",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"search\": \"<string>\",\n  \"created_at__gte\": \"<dateTime>\",\n  \"created_at__lte\": \"<dateTime>\",\n  \"limit\": 15,\n  \"sort_by\": \"relevance\",\n  \"team_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"type\": \"scribe\",\n  \"updated_at__gte\": \"<dateTime>\",\n  \"updated_at__lte\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Your plan does not support Public API access.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c541834-0bc8-4564-8767-4ef926890d5c",
+              "name": "Rate limit exceeded - either per-minute or monthly limit reached.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "search",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"search\": \"<string>\",\n  \"created_at__gte\": \"<dateTime>\",\n  \"created_at__lte\": \"<dateTime>\",\n  \"limit\": 15,\n  \"sort_by\": \"relevance\",\n  \"team_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"type\": \"scribe\",\n  \"updated_at__gte\": \"<dateTime>\",\n  \"updated_at__lte\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"You have exceeded your monthly limit of API calls.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://public-api.scribehow.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "13914445-3311-4d0b-9d3c-347450c57459",
+    "name": "Scribe & Retrieval Documents Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\n## Scribe Search & Retrieval API\n\nThe Scribe Search & Retrieval API provides programmatic, read-only access to the documents in your organization's knowledge base. It is designed for developers who want to integrate Scribe content — Scribe Documents and Knowledge Pages — into their own applications.\n\n### Authentication\nAll endpoints require an API key sent in the `X-API-Key` header. Each key is scoped to one or more teams; every response is restricted to content those teams can access.\n\n### Endpoints\n- **Search documents** (`POST /v1/search/`) — full-text search across document name and description, with type, team, and date-range filters. Returns up to 20 results per request and is not paginated.\n- **List documents** (`GET /v1/documents/`) — paginated listing of every document accessible to the API key, ordered newest-first, with the same type, team, and date-range filters.\n- **Retrieve a document** (`GET /v1/documents/{id}/`) — fetch a single document by UUID, including per-action screenshot URLs (Scribe Documents) or structured Editor.js content (Knowledge Pages).\n- **List teams** (`GET /v1/teams/`) — every team accessible to the API key. Use the returned `id` values as `team_ids` filters on the other endpoints.\n\n### Getting Started\n1. Generate an API key from the [Settings](https://scribehow.com/settings?tab=developerAccess) page. The full key is shown only once.\n2. Send it on every request as `X-API-Key: sc_1234567890abcdefg.hijklmnopqrstuvwx`.\n3. Call `GET /v1/teams/` to discover the team IDs your key can use, then call any of the document endpoints.\n\n### Document Types\n- **Scribe Documents** (`type: scribe`) — step-by-step process documentation. The `actions` array contains the steps; each action may include a `screenshot_url`.\n- **Knowledge Pages** (`type: page`) — long-form reference content. The `content` field on the list and retrieve endpoints returns the page body as Editor.js JSON; `actions` is always empty.\n\n### Rate Limits\n- **Per-minute limits**: a combined 300 requests/minute shared across `search` and `teams`; a combined 60 requests/minute shared across the document endpoints. Tracked per API key per source IP — clients calling from multiple egress IPs get an independent bucket on each one.\n- **Monthly limits**: vary by subscription plan and apply across all endpoints except `teams`.\n- When a limit is exceeded the API returns `429 Too Many Requests`.\n",
+      "type": "text/plain"
+    }
+  }
+}

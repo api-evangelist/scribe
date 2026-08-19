@@ -1,0 +1,878 @@
+{
+  "item": [
+    {
+      "id": "1f2d79fc-2cb5-47c5-882f-a2db0e317fd5",
+      "name": "Documents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9ba666eb-7291-4c1d-bfa3-ebfb8be6bd42",
+          "name": "List documents",
+          "request": {
+            "name": "List documents",
+            "description": {
+              "content": "Paginated list of every document accessible to your API key, ordered by creation date (newest first). Supports filtering by type, team, and creation/update date ranges. The default page size is 100 and the maximum is 100; use the `limit` and `offset` query parameters to paginate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "documents",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "created__gte",
+                  "value": "<dateTime>",
+                  "description": "Created at or after (ISO-8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "created__lte",
+                  "value": "<dateTime>",
+                  "description": "Created at or before (ISO-8601)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The initial index from which to return the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "team_ids",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "team_ids",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Restrict results to a single document type.\n\n* `page` - Knowledge Page\n* `scribe` - Scribe Document"
+                },
+                {
+                  "disabled": false,
+                  "key": "updated__gte",
+                  "value": "<dateTime>",
+                  "description": "Last meaningful user edit at or after (ISO-8601). Targets a separate column from the response `updated_at` field, which is bumped on every save."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated__lte",
+                  "value": "<dateTime>",
+                  "description": "Last meaningful user edit at or before (ISO-8601). Targets a separate column from the response `updated_at` field, which is bumped on every save."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d195fa7b-3247-4980-8e53-5692b130e4b8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "documents",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created__gte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created__lte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "team_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "team_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "updated__gte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated__lte",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"actions\": [\n        {\n          \"description\": \"string\",\n          \"id\": \"8a3ea0fb-7be4-a018-5840-1078e7e4731f\",\n          \"screenshot_url\": \"https://jlPasFGAZdfJJrmS.ctN208NeuIWhzyIzq-mEUxbxBTsv+2T4SqgKggvJ\"\n        },\n        {\n          \"description\": \"string\",\n          \"id\": \"dc957214-7382-b592-47e6-242d4da25eef\",\n          \"screenshot_url\": \"https://neBymRvyrkujFndGjk.gyiuI-L.uZ2BGgBvzdIlETahQAV7wyTr6ss8AWodFrbB\"\n        }\n      ],\n      \"content\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"created_at\": \"1955-09-22T05:36:43.915Z\",\n      \"description\": \"string\",\n      \"id\": \"396a0470-1b03-088e-8538-9da7c0b36698\",\n      \"link\": \"http://MPQtdBwa.trtecHWvGH83VVrMLiAqhOpSm9WBU3XkRc22OVV\",\n      \"name\": \"string\",\n      \"team\": {\n        \"id\": \"6c66f294-1412-0e79-021e-20f3b7631d7e\",\n        \"name\": \"string\"\n      },\n      \"type\": \"page\",\n      \"updated_at\": \"1970-06-23T20:11:07.081Z\",\n      \"user_owner\": {\n        \"email\": \"FWe0pb5@qtUxahiaHDM.fgb\",\n        \"id\": \"80833512-7086-8b05-f523-2e3162ab3f7e\",\n        \"name\": \"string\"\n      }\n    },\n    {\n      \"actions\": [\n        {\n          \"description\": \"string\",\n          \"id\": \"1c746fe6-1db0-dec1-2d02-c67d54ce1b62\",\n          \"screenshot_url\": \"http://GZeWevOoSsQelCttHoUNGXBFja.cimQ+Mb-\"\n        },\n        {\n          \"description\": \"string\",\n          \"id\": \"868651f6-296e-7cf6-9244-031b0e9cf6ba\",\n          \"screenshot_url\": \"http://KAwNeDVIUcNsqHtTnTKrpetqyzCpy.gxcs9,SHAxhti5pHTP4aejT,UI0ikFW5dibOeMeuntuUfg3kQJrUOz,JH6G6\"\n        }\n      ],\n      \"content\": {\n        \"key_0\": {}\n      },\n      \"created_at\": \"1998-04-22T21:37:23.279Z\",\n      \"description\": \"string\",\n      \"id\": \"307098de-d859-ff3d-e610-82dd6faf6a8f\",\n      \"link\": \"http://lJRpIeSgqfZzQUwRNbLcrjpJfzDwm.qdqOcUUv1qH0VxvkGTXtBmtm9XcRk3IGO+Rv1ZXxLWs-F8fwSNQ6xxrqqmYKcoNw\",\n      \"name\": \"string\",\n      \"team\": {\n        \"id\": \"eec16fab-fce4-0f7c-a791-ac1b10951992\",\n        \"name\": \"string\"\n      },\n      \"type\": \"page\",\n      \"updated_at\": \"1965-08-06T09:41:07.341Z\",\n      \"user_owner\": {\n        \"email\": \"6si-UyT6009@TDxFCCpHBhNFIUeZqxdFDtjgGaAGmfUw.xiwg\",\n        \"id\": \"2705e8c7-6c57-026e-d3c6-8d99d9f2b58d\",\n        \"name\": \"string\"\n      }\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?offset=400&limit=100\",\n  \"previous\": \"http://api.example.org/accounts/?offset=200&limit=100\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fb03872-879b-4788-b626-29784e457573",
+              "name": "Bad request - invalid request data or parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "documents",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created__gte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created__lte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "team_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "team_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "updated__gte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated__lte",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"field_name\": [\n    \"Enter a valid value.\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "293a518f-559e-4119-8cf1-203cf1a1b43a",
+              "name": "Authentication credentials were not provided or are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "documents",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created__gte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created__lte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "team_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "team_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "updated__gte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated__lte",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Authentication credentials were not provided.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d996950-783e-43f6-b62d-c2af783bf23e",
+              "name": "Access denied - your plan does not support Public API access.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "documents",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created__gte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created__lte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "team_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "team_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "updated__gte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated__lte",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Your plan does not support Public API access.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b65f6636-9055-42dc-86bd-0b09f8603a15",
+              "name": "Rate limit exceeded - either per-minute or monthly limit reached.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "documents",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "created__gte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "created__lte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "team_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "team_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "updated__gte",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "updated__lte",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"You have exceeded your monthly limit of API calls.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4cba826d-8be5-4573-aca5-78f98e0a58f4",
+          "name": "Retrieve a document",
+          "request": {
+            "name": "Retrieve a document",
+            "description": {
+              "content": "Fetch a single document by its UUID. The response includes per-action screenshot URLs for Scribe Documents and structured `content` for Knowledge Pages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "documents",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "390dc542-2680-4afb-bbe4-bb03f8cabdff",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"actions\": [\n    {\n      \"description\": \"string\",\n      \"id\": \"017f80e9-5e28-fce4-b8e8-2cccf66676dc\",\n      \"screenshot_url\": \"http://UCgGNcSaFMVF.fskfnQbuJNdKwMuYG-sMbZItG47,FEumaLSVkv7dfbC34w9JizdpA93lB01xqS+i\"\n    },\n    {\n      \"description\": \"string\",\n      \"id\": \"efd49021-f63c-d80f-e1c9-be9571615784\",\n      \"screenshot_url\": \"https://SJVcyUOHBIRvCdggtiozJTdLYwHKkYF.szMb2.-xhVng\"\n    }\n  ],\n  \"content\": {\n    \"key_0\": {}\n  },\n  \"created_at\": \"1954-03-06T08:46:04.260Z\",\n  \"description\": \"string\",\n  \"id\": \"80947f50-daab-a484-9916-1082bddde6af\",\n  \"link\": \"https://ovPQGSpiWwNvaqisKqekaoJKyoKyulsSe.kgpTxloOHAGf1POO5uI\",\n  \"name\": \"string\",\n  \"team\": {\n    \"id\": \"dab96563-0410-9e7f-e535-61b0857257c4\",\n    \"name\": \"string\"\n  },\n  \"type\": \"scribe\",\n  \"updated_at\": \"2022-01-09T09:56:36.850Z\",\n  \"user_owner\": {\n    \"email\": \"XyZXbCLd1R@iGgGANvSotGnrfIyAShaZL.dl\",\n    \"id\": \"a039e0ef-6e95-abe5-c5f3-bb91b86a761a\",\n    \"name\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4291fd98-032b-44d8-9623-b24ff3fa0a72",
+              "name": "Bad request - invalid request data or parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"field_name\": [\n    \"Enter a valid value.\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4ce944c-a1be-4ea3-98a6-7cc2a32a74f5",
+              "name": "Authentication credentials were not provided or are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Authentication credentials were not provided.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c59043b-3854-4260-b90e-7bbf55516b2a",
+              "name": "Access denied - your plan does not support Public API access.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"Your plan does not support Public API access.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01eee2ac-ba7e-4dd3-8599-bdc6941529a1",
+              "name": "Rate limit exceeded - either per-minute or monthly limit reached.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "documents",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"You have exceeded your monthly limit of API calls.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://public-api.scribehow.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d59a76ee-bc51-4a06-aede-6df5217aa7dd",
+    "name": "Scribe Search & Retrieval Documents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\n## Scribe Search & Retrieval API\n\nThe Scribe Search & Retrieval API provides programmatic, read-only access to the documents in your organization's knowledge base. It is designed for developers who want to integrate Scribe content — Scribe Documents and Knowledge Pages — into their own applications.\n\n### Authentication\nAll endpoints require an API key sent in the `X-API-Key` header. Each key is scoped to one or more teams; every response is restricted to content those teams can access.\n\n### Endpoints\n- **Search documents** (`POST /v1/search/`) — full-text search across document name and description, with type, team, and date-range filters. Returns up to 20 results per request and is not paginated.\n- **List documents** (`GET /v1/documents/`) — paginated listing of every document accessible to the API key, ordered newest-first, with the same type, team, and date-range filters.\n- **Retrieve a document** (`GET /v1/documents/{id}/`) — fetch a single document by UUID, including per-action screenshot URLs (Scribe Documents) or structured Editor.js content (Knowledge Pages).\n- **List teams** (`GET /v1/teams/`) — every team accessible to the API key. Use the returned `id` values as `team_ids` filters on the other endpoints.\n\n### Getting Started\n1. Generate an API key from the [Settings](https://scribehow.com/settings?tab=developerAccess) page. The full key is shown only once.\n2. Send it on every request as `X-API-Key: sc_1234567890abcdefg.hijklmnopqrstuvwx`.\n3. Call `GET /v1/teams/` to discover the team IDs your key can use, then call any of the document endpoints.\n\n### Document Types\n- **Scribe Documents** (`type: scribe`) — step-by-step process documentation. The `actions` array contains the steps; each action may include a `screenshot_url`.\n- **Knowledge Pages** (`type: page`) — long-form reference content. The `content` field on the list and retrieve endpoints returns the page body as Editor.js JSON; `actions` is always empty.\n\n### Rate Limits\n- **Per-minute limits**: a combined 300 requests/minute shared across `search` and `teams`; a combined 60 requests/minute shared across the document endpoints. Tracked per API key per source IP — clients calling from multiple egress IPs get an independent bucket on each one.\n- **Monthly limits**: vary by subscription plan and apply across all endpoints except `teams`.\n- When a limit is exceeded the API returns `429 Too Many Requests`.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -2,11 +2,9 @@ generated: '2026-07-21'
 method: derived
 status: candidate
 source: openapi/scribe-search-retrieval-openapi.yml
-note: >-
-  No official hosted/remote Scribe MCP server was found in Scribe's docs, the
-  MCP registry, or npm (@modelcontextprotocol/*). This is a DERIVED candidate
-  tool list mapping the four Search & Retrieval API operations to MCP tools —
-  a starting point, not a published server.
+note: No official hosted/remote Scribe MCP server was found in Scribe's docs, the MCP registry, or npm
+  (@modelcontextprotocol/*). This is a DERIVED candidate tool list mapping the four Search & Retrieval
+  API operations to MCP tools — a starting point, not a published server.
 server:
   name: scribe
   transport: http
@@ -14,14 +12,24 @@ server:
   auth_header: X-API-Key
 tools:
 - name: search_documents
-  description: Full-text search across Scribe Document and Knowledge Page names and descriptions, with type/team/date filters. Returns up to 20 results.
+  description: Full-text search across Scribe Document and Knowledge Page names and descriptions, with
+    type/team/date filters. Returns up to 20 results.
   source_operation: openapi/scribe-search-retrieval-openapi.yml#v1_search_documents
 - name: list_documents
-  description: Paginated listing of every document accessible to the API key, newest-first, with type/team/date filters.
+  description: Paginated listing of every document accessible to the API key, newest-first, with type/team/date
+    filters.
   source_operation: openapi/scribe-search-retrieval-openapi.yml#v1_get_documents
 - name: retrieve_document
-  description: Fetch a single document by UUID, including per-action screenshot URLs (Scribe Documents) or structured Editor.js content (Knowledge Pages).
+  description: Fetch a single document by UUID, including per-action screenshot URLs (Scribe Documents)
+    or structured Editor.js content (Knowledge Pages).
   source_operation: openapi/scribe-search-retrieval-openapi.yml#v1_retrieve_document
 - name: list_teams
-  description: List every team accessible to the API key; returned ids are used as team_ids filters on the other tools.
+  description: List every team accessible to the API key; returned ids are used as team_ids filters on
+    the other tools.
   source_operation: openapi/scribe-search-retrieval-openapi.yml#v1_teams_list
+deployment:
+  mode: none
+  verified: derived
+  tools: 4
+  checked: '2026-08-12'
+  source: catalog MCP census
