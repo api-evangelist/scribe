@@ -41,6 +41,15 @@ tags:
 - Company
 - Ai Ml
 - Documentation
+- Knowledge-Management
+- Search
+- Workflows
+- Process Documentation
+- Enterprise
+tags_raw:
+- Company
+- Ai Ml
+- Documentation
 - Knowledge Management
 - Search
 - Workflow
@@ -77,6 +86,8 @@ apis:
   humanURL: https://public-api.scribehow.com/schema/redoc/
   baseURL: https://public-api.scribehow.com
   tags:
+  - Team
+  tags_raw:
   - Teams
   properties:
   - type: OpenAPI
