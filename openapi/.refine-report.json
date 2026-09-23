@@ -1,9 +1,7 @@
 {
   "provider": "scribe",
   "sources": [
-    "scribe-documents-api-openapi.yml",
-    "scribe-search-api-openapi.yml",
-    "scribe-teams-api-openapi.yml"
+    "_original/scribe-search-retrieval-openapi.yml"
   ],
   "outputs": [
     "scribe-documents-api-openapi.yml",
@@ -13,6 +11,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "scribe-search-retrieval-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "scribe-search-retrieval-openapi.yml: declared missing tag: Documents",
+    "scribe-search-retrieval-openapi.yml: declared missing tag: Search",
+    "scribe-search-retrieval-openapi.yml: declared missing tag: Teams",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "scribe-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "scribe-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "scribe-teams-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
