@@ -55,7 +55,7 @@ tags:
 - Company
 - Ai Ml
 - Documentation
-- Knowledge-Management
+- Knowledge Management
 - Search
 - Workflows
 - Process Documentation
@@ -69,6 +69,7 @@ tags_raw:
 - Workflow
 - Process Documentation
 - Enterprise
+- Knowledge-Management
 apis:
 - aid: scribe:scribe-documents-api
   name: Scribe Documents API

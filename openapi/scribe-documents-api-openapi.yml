@@ -233,11 +233,68 @@ paths:
           description: Rate limit exceeded - either per-minute or monthly limit reached.
 components:
   schemas:
-    TypeEnum:
-      enum:
-      - page
-      - scribe
-      type: string
+    PaginatedDocumentDetailDBList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentDetailDB'
+    ActionDB:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Human-readable description of the action.
+        id:
+          type: string
+          format: uuid
+          description: UUID of the action (Scribe Document step).
+        screenshot_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          readOnly: true
+          description: URL of the screenshot captured for this action. `null` when the action has no externally visible screenshot.
+      required:
+      - description
+      - id
+      - screenshot_url
+    UserDB:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: Email address of the user.
+        id:
+          type: string
+          format: uuid
+          description: UUID of the user.
+        name:
+          type: string
+          description: Full name of the user.
+      required:
+      - email
+      - id
+      - name
     DocumentDetailDB:
       type: object
       description: A document with its full body — actions for Scribe Documents and structured content for Knowledge Pages.
@@ -303,68 +360,6 @@ components:
       - team
       - type
       - updated_at
-    PaginatedDocumentDetailDBList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?offset=400&limit=100
-        previous:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?offset=200&limit=100
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/DocumentDetailDB'
-    ActionDB:
-      type: object
-      properties:
-        description:
-          type: string
-          description: Human-readable description of the action.
-        id:
-          type: string
-          format: uuid
-          description: UUID of the action (Scribe Document step).
-        screenshot_url:
-          type:
-          - string
-          - 'null'
-          format: uri
-          readOnly: true
-          description: URL of the screenshot captured for this action. `null` when the action has no externally visible screenshot.
-      required:
-      - description
-      - id
-      - screenshot_url
-    UserDB:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-          description: Email address of the user.
-        id:
-          type: string
-          format: uuid
-          description: UUID of the user.
-        name:
-          type: string
-          description: Full name of the user.
-      required:
-      - email
-      - id
-      - name
     Team:
       type: object
       description: A team — used both as the owner of a document and as a filter target.
@@ -381,6 +376,11 @@ components:
       required:
       - id
       - name
+    TypeEnum:
+      enum:
+      - page
+      - scribe
+      type: string
   securitySchemes:
     APIKey:
       type: apiKey

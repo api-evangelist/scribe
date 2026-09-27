@@ -98,11 +98,6 @@ paths:
           description: Rate limit exceeded - either per-minute or monthly limit reached.
 components:
   schemas:
-    TypeEnum:
-      enum:
-      - page
-      - scribe
-      type: string
     ActionES:
       type: object
       properties:
@@ -204,22 +199,6 @@ components:
       - email
       - id
       - name
-    Team:
-      type: object
-      description: A team — used both as the owner of a document and as a filter target.
-      properties:
-        id:
-          type: string
-          format: uuid
-          readOnly: true
-          description: UUID of the team. Pass this as a `team_ids` filter on other endpoints.
-        name:
-          type: string
-          readOnly: true
-          description: Display name of the team.
-      required:
-      - id
-      - name
     DocumentES:
       type: object
       description: A document returned by the search endpoint.
@@ -279,6 +258,27 @@ components:
       - team
       - type
       - updated_at
+    Team:
+      type: object
+      description: A team — used both as the owner of a document and as a filter target.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          description: UUID of the team. Pass this as a `team_ids` filter on other endpoints.
+        name:
+          type: string
+          readOnly: true
+          description: Display name of the team.
+      required:
+      - id
+      - name
+    TypeEnum:
+      enum:
+      - page
+      - scribe
+      type: string
   securitySchemes:
     APIKey:
       type: apiKey
