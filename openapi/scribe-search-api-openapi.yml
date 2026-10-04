@@ -98,24 +98,24 @@ paths:
           description: Rate limit exceeded - either per-minute or monthly limit reached.
 components:
   schemas:
-    ActionES:
+    UserES:
       type: object
       properties:
-        description:
+        email:
           type: string
-          description: Human-readable description of the action.
+          format: email
+          description: Email address of the user.
         id:
           type: string
           format: uuid
-          description: UUID of the action (Scribe Document step).
+          description: UUID of the user.
+        name:
+          type: string
+          description: Full name of the user.
       required:
-      - description
+      - email
       - id
-    TypeEnum:
-      enum:
-      - page
-      - scribe
-      type: string
+      - name
     DocumentES:
       type: object
       description: A document returned by the search endpoint.
@@ -175,40 +175,36 @@ components:
       - team
       - type
       - updated_at
-    Team:
+    SortByEnum:
+      enum:
+      - -created_at
+      - -updated_at
+      - created_at
+      - relevance
+      - updated_at
+      type: string
+      description: '* `-created_at` - Created At Descending
+
+        * `-updated_at` - Updated At Descending
+
+        * `created_at` - Created At Ascending
+
+        * `relevance` - Relevance
+
+        * `updated_at` - Updated At Ascending'
+    ActionES:
       type: object
-      description: A team — used both as the owner of a document and as a filter target.
       properties:
+        description:
+          type: string
+          description: Human-readable description of the action.
         id:
           type: string
           format: uuid
-          readOnly: true
-          description: UUID of the team. Pass this as a `team_ids` filter on other endpoints.
-        name:
-          type: string
-          readOnly: true
-          description: Display name of the team.
+          description: UUID of the action (Scribe Document step).
       required:
+      - description
       - id
-      - name
-    UserES:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-          description: Email address of the user.
-        id:
-          type: string
-          format: uuid
-          description: UUID of the user.
-        name:
-          type: string
-          description: Full name of the user.
-      required:
-      - email
-      - id
-      - name
     SearchRequestRequest:
       type: object
       properties:
@@ -262,23 +258,27 @@ components:
           title: Updated at or before (ISO-8601)
       required:
       - search
-    SortByEnum:
+    TypeEnum:
       enum:
-      - -created_at
-      - -updated_at
-      - created_at
-      - relevance
-      - updated_at
+      - page
+      - scribe
       type: string
-      description: '* `-created_at` - Created At Descending
-
-        * `-updated_at` - Updated At Descending
-
-        * `created_at` - Created At Ascending
-
-        * `relevance` - Relevance
-
-        * `updated_at` - Updated At Ascending'
+    Team:
+      type: object
+      description: A team — used both as the owner of a document and as a filter target.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          description: UUID of the team. Pass this as a `team_ids` filter on other endpoints.
+        name:
+          type: string
+          readOnly: true
+          description: Display name of the team.
+      required:
+      - id
+      - name
   securitySchemes:
     APIKey:
       type: apiKey
