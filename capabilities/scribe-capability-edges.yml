@@ -1,0 +1,26 @@
+slug: scribe
+provider: Scribe
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Documents
+  spec_file: scribe-documents-api-openapi.yml
+  capability_id: BC-830
+  capability_id_l1: BC-830
+  capability_name: Knowledge Management
+  confidence: 0.7
+  evidence: provides programmatic, read-only access to the documents in your organization's knowledge
+    base; GET /v1/documents/  List documents
+  reason: Operations list and retrieve step-by-step process guides held in an organisational knowledge
+    base, which is organisational knowledge capture/sharing. Left at L1 because the read-only listing
+    surface does not clearly name curation, capture or best-practice sub-capabilities.
