@@ -233,6 +233,11 @@ paths:
           description: Rate limit exceeded - either per-minute or monthly limit reached.
 components:
   schemas:
+    TypeEnum:
+      enum:
+      - page
+      - scribe
+      type: string
     ActionDB:
       type: object
       properties:
@@ -360,11 +365,6 @@ components:
       - team
       - type
       - updated_at
-    TypeEnum:
-      enum:
-      - page
-      - scribe
-      type: string
     Team:
       type: object
       description: A team — used both as the owner of a document and as a filter target.

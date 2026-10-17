@@ -98,6 +98,22 @@ paths:
           description: Rate limit exceeded - either per-minute or monthly limit reached.
 components:
   schemas:
+    Team:
+      type: object
+      description: A team — used both as the owner of a document and as a filter target.
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          description: UUID of the team. Pass this as a `team_ids` filter on other endpoints.
+        name:
+          type: string
+          readOnly: true
+          description: Display name of the team.
+      required:
+      - id
+      - name
     UserES:
       type: object
       properties:
@@ -116,6 +132,77 @@ components:
       - email
       - id
       - name
+    TypeEnum:
+      enum:
+      - page
+      - scribe
+      type: string
+    SearchRequestRequest:
+      type: object
+      properties:
+        created_at__gte:
+          type: string
+          format: date-time
+          title: Created at or after (ISO-8601)
+        created_at__lte:
+          type: string
+          format: date-time
+          title: Created at or before (ISO-8601)
+        limit:
+          type: integer
+          maximum: 20
+          minimum: 1
+          default: 15
+          title: Maximum number of results to return (max 20)
+        search:
+          type: string
+          minLength: 1
+          title: Search term
+          description: Free-form text matched against document names and descriptions. The full string is treated as a single query — there is no special handling for commas or other separators.
+        sort_by:
+          allOf:
+          - $ref: '#/components/schemas/SortByEnum'
+          default: relevance
+          title: Sort order
+        team_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: Restrict results to documents owned by these teams. When omitted, all teams accessible to the API key are searched. Use `GET /v1/teams/` to list valid IDs.
+        type:
+          allOf:
+          - $ref: '#/components/schemas/TypeEnum'
+          title: Document type
+          description: 'Restrict results to a single document type.
+
+
+            * `page` - Knowledge Page
+
+            * `scribe` - Scribe Document'
+        updated_at__gte:
+          type: string
+          format: date-time
+          title: Updated at or after (ISO-8601)
+        updated_at__lte:
+          type: string
+          format: date-time
+          title: Updated at or before (ISO-8601)
+      required:
+      - search
+    ActionES:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Human-readable description of the action.
+        id:
+          type: string
+          format: uuid
+          description: UUID of the action (Scribe Document step).
+      required:
+      - description
+      - id
     DocumentES:
       type: object
       description: A document returned by the search endpoint.
@@ -192,93 +279,6 @@ components:
         * `relevance` - Relevance
 
         * `updated_at` - Updated At Ascending'
-    ActionES:
-      type: object
-      properties:
-        description:
-          type: string
-          description: Human-readable description of the action.
-        id:
-          type: string
-          format: uuid
-          description: UUID of the action (Scribe Document step).
-      required:
-      - description
-      - id
-    SearchRequestRequest:
-      type: object
-      properties:
-        created_at__gte:
-          type: string
-          format: date-time
-          title: Created at or after (ISO-8601)
-        created_at__lte:
-          type: string
-          format: date-time
-          title: Created at or before (ISO-8601)
-        limit:
-          type: integer
-          maximum: 20
-          minimum: 1
-          default: 15
-          title: Maximum number of results to return (max 20)
-        search:
-          type: string
-          minLength: 1
-          title: Search term
-          description: Free-form text matched against document names and descriptions. The full string is treated as a single query — there is no special handling for commas or other separators.
-        sort_by:
-          allOf:
-          - $ref: '#/components/schemas/SortByEnum'
-          default: relevance
-          title: Sort order
-        team_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-          description: Restrict results to documents owned by these teams. When omitted, all teams accessible to the API key are searched. Use `GET /v1/teams/` to list valid IDs.
-        type:
-          allOf:
-          - $ref: '#/components/schemas/TypeEnum'
-          title: Document type
-          description: 'Restrict results to a single document type.
-
-
-            * `page` - Knowledge Page
-
-            * `scribe` - Scribe Document'
-        updated_at__gte:
-          type: string
-          format: date-time
-          title: Updated at or after (ISO-8601)
-        updated_at__lte:
-          type: string
-          format: date-time
-          title: Updated at or before (ISO-8601)
-      required:
-      - search
-    TypeEnum:
-      enum:
-      - page
-      - scribe
-      type: string
-    Team:
-      type: object
-      description: A team — used both as the owner of a document and as a filter target.
-      properties:
-        id:
-          type: string
-          format: uuid
-          readOnly: true
-          description: UUID of the team. Pass this as a `team_ids` filter on other endpoints.
-        name:
-          type: string
-          readOnly: true
-          description: Display name of the team.
-      required:
-      - id
-      - name
   securitySchemes:
     APIKey:
       type: apiKey
